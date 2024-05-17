@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>MediMate智能聊天夥伴</title>
+    <link rel="icon" href="image/Logo.ico" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 101; 
+        }
+
+        .logo {
+            height: 130px; 
+            width: auto; 
+        }
+
+        .brand-name {
+            font-size: 20px;  
+            font-weight: bold;
+            color: white;      
+            margin-left: 20px; 
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                height: 30px; 
+            }
+            .brand-name {
+                font-size: 20px; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                height: 20px; 
+            }
+            .brand-name {
+                font-size: 10px;  
+            }
+        }
+
+        #info {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            text-align: center;
+            z-index: 100;
+            display: block;
+            color: white;
+            font-size: 50px;
+            font-family: monospace;
+        }
+          
+        #voiceButton {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            font-family: monospace;
+            opacity: 0.5; 
+            border-radius: 50%;
+            background-color: rgba(0, 217, 255, 0.6); 
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s, opacity 0.3s; 
+        }
+          
+        #voiceButton:hover {
+            background-color: rgba(0, 217, 255, 0.7); 
+            opacity: 0.8; 
+        }
+
+        #voiceInput {
+            position: absolute;  
+            top: 20%;            
+            left: 50%;           
+            transform: translate(-50%, -50%); 
+            width: 300px;        
+            padding: 10px;       
+            text-align: center;  
+            background-color: rgba(200, 200, 200, 0.5); 
+            color: white;        
+            border-radius: 10px;
+            z-index: 100;
+            font-size: 25px;        
+        }
+
+        @media (max-width: 768px) {
+            #voiceInput {
+                width: 90%; 
+                font-size: 14px;
+            }
+        }
+
+        #inputContainer {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            text-align: center;
+            z-index: 100;
+        }
+
+        #textInput {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+        }
+
+        #inputButton {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+    </style>
+    <link rel="stylesheet" media="screen" href="style.css">
+</head>
+
+<body>
+    <header>
+        <img src="image/Logo.png" alt="MediMate Logo" class="logo">
+        <div class="brand-name">MediMate</div>
+    </header>
+
+    <button id="voiceButton" class="myButton">
+        <img src="image/microphone.png" alt="Microphone" style="width: 60%; height: auto;">
+    </button>
+
+    <div id="inputContainer">
+        <input type="text" id="textInput" placeholder="點擊按鈕開始輸入">
+        <button id="inputButton" onclick="triggerInput()">開始輸入</button>
+    </div>
+
+    <div id="voiceInput">語音識別結果會顯示在這裡</div>
+    <script>
+        const speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (speechRecognition) {
+            const recognition = new speechRecognition();
+            recognition.lang = 'zh-TW';
+            recognition.interimResults = false;
+
+            const microphoneButton = document.getElementById('voiceButton');
+            const outputDiv = document.getElementById('voiceInput');
+
+            microphoneButton.addEventListener('click', () => {
+                try {
+                    recognition.start();
+                    outputDiv.textContent = '請開始說話...';
+                } catch (error) {
+                    console.error('語音識別啟動失敗:', error);
+                }
+            });
+
+            recognition.onresult = function(event) {
+                const last = event.results.length - 1;
+                const text = event.results[last][0].transcript;
+                outputDiv.textContent = '您說: ' + text;
+            };
+
+            recognition.onspeechend = function() {
+                recognition.stop();
+                outputDiv.textContent += ' (輸入結束)';
+            };
+
+            recognition.onerror = function(event) {
+                outputDiv.textContent = '語音識別錯誤: ' + event.error;
+            };
+        } else {
+            console.error('瀏覽器不支持語音識別');
+        }
+    </script>
+
+    <div id="particles-js"></div>
+    <script src="particles.js-master/particles.js"></script>
+    <script src="particles.js-master/demo/js/app.js"></script>
+
+    <script type="module">
+        import * as THREE from 'https://cdn.skypack.dev/three@0.130.0';
+        import { OrbitControls } from 'https://cdn.skypack.dev/three@0.130.0/examples/jsm/controls/OrbitControls.js';
+        import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.130.0/examples/jsm/loaders/GLTFLoader.js';
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000); 
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.update();
+
+        camera.position.z = 5;
+
+        const loader = new GLTFLoader();
+        loader.load('project.vrm', function (gltf) {
+            const vrmModel = gltf.scene;
+
+            vrmModel.rotation.y = Math.PI;
+            vrmModel.scale.set(10, 10, 10);
+            vrmModel.position.y = -8;
+            vrmModel.rotation.x = Math.PI / 30;
+            vrmModel.traverse((child) => {
+                if (child.isMesh && child.name.includes('upperBody')) {
+                    scene.add(child);
+                }
+            });
+            scene.add(vrmModel);
+
+            const mixer = new THREE.AnimationMixer(vrmModel);
+            const blinkAction = mixer.clipAction(gltf.animations.find((clip) => clip.name === 'Blink'));
+            blinkAction.play();
+        }, undefined, function (error) {
+            console.error('Failed to load VRM model:', error);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
+
+    <script>
+        function triggerInput() {
+            var inputField = document.getElementById('textInput');
+            inputField.focus();
+        }
+    </script>
+    
+</body>
+
+</html>

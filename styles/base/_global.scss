@@ -1,0 +1,36 @@
+// 全局基礎樣式
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
+
+* {
+  line-height: 1.5;
+  font-family: "Noto Sans TC", sans-serif !important;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-button {
+  background: transparent;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid slategrey;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}

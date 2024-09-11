@@ -1,19 +1,7 @@
-# 啟動
+# r3f-vite-starter
+A boilerplate to build R3F projects
 
-- npm install 下載套件
-- npm run dev 開啟server
+# 開啟專案指令
+npm run dev
 
-# 使用套件
-
-- ESLint
-    - npm run dev => 開啟會檢查格式，不符合格式會無法打開
-    - vscode: 可以下載ESLint套件，格式不符會有紅底線
-    - webstorm: 手動配置ESLint package至node modules裡(Manual ESLint configuration)
-
-# 專案結構說明
-https://hackmd.io/@ntubimdbirc/BJNlGVcha
-
-# 開發人員名單
-| 姓名 | 備註 |
-| -------- | -------- |
-| Name     | Memo     |
+![image](https://user-images.githubusercontent.com/6551176/221732091-23ee52cb-4150-42fa-b998-43628d7a6b0d.png)

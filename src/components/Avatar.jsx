@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.5.0 public/models/66e00cde7415087e509a591b.glb
 
 import { useRef, useEffect } from "react";
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
 export function Avatar(props) {
   const group = useRef();
@@ -15,11 +16,14 @@ export function Avatar(props) {
 
   const { actions } = useAnimations(bowAnimation, group);
 
+  useFrame((state) => {
+    group.current.getObjectByName("Head").lookAt(state.camera.position);
+  });
+
   useEffect(() => {
     actions["Bow"].reset().play();
   }, []);
 
-  console.log(bowAnimation);
   return (
     <group {...props} ref={group} dispose={null}>
       <group rotation-x={-Math.PI / 2}>

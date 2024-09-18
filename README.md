@@ -1,11 +1,11 @@
-# r3f-vite-starter
-A boilerplate to build R3F projects
-
 # 開啟專案指令
 npm run dev
 
 # 創建虛擬人網址(取得.glb檔案)
 https://readyplayer.me/
+
+# 虛擬人轉react
+https://github.com/pmndrs/gltfjsx
 
 # 載入動作(需先有.fbx檔案，載入後挑動作)
 https://www.mixamo.com/#/

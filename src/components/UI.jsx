@@ -1,13 +1,12 @@
 import { useRef } from "react";
 import { useChat } from "../hooks/useChat";
-import Test from "./Test";
 
 export const UI = ({ hidden, ...props }) => {
   const input = useRef();
   const { chat, loading, cameraZoomed, setCameraZoomed, message } = useChat();
 
   const sendMessage = () => {
-    const text = input.current.value;
+    const text = { 'transcript' : input.current.value};
     if (!loading && !message) {
       chat(text);
       input.current.value = "";
@@ -90,7 +89,7 @@ export const UI = ({ hidden, ...props }) => {
         <div className="flex items-center gap-2 pointer-events-auto max-w-screen-sm w-full mx-auto">
           <input
             className="w-full placeholder:text-gray-800 placeholder:italic p-4 rounded-md bg-opacity-50 bg-white backdrop-blur-md"
-            placeholder="Type a message..."
+            placeholder="請輸入內容..."
             ref={input}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -101,13 +100,12 @@ export const UI = ({ hidden, ...props }) => {
           <button
             disabled={loading || message}
             onClick={sendMessage}
-            className={`bg-pink-500 hover:bg-pink-600 text-white p-4 px-10 font-semibold uppercase rounded-md ${
+            className={`bg-pink-500 hover:bg-pink-600 text-white py-4 px-2 w-28 font-semibold uppercase rounded-md ${
               loading || message ? "cursor-not-allowed opacity-30" : ""
             }`}
           >
-            Send
+            發送
           </button>
-          <Test></Test>
         </div>
       </div>
     </>

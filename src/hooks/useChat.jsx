@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-
+import openAIAPI from '../../services/OpenAIAPI'
 
 const ChatContext = createContext();
 
@@ -14,8 +14,14 @@ export const ChatProvider = ({ children }) => {
 
   const chat = async (message) => {
     setLoading(true);
-    const data = await openAIAPI.sendMessageToOpenAi(message);
-    const resp = (await data.json()).messages;
+    // @TODO 把註解弄回來
+    // const data = await openAIAPI.sendMessageToOpenAi(message);
+    // const resp = (await data.json()).response;
+    const data = {
+      "response": "嗨，你好！有什麼可以幫助你的嗎？",
+      "role": "assistant"
+    }
+    const resp = data.response;
     setMessages((messages) => [...messages, ...resp]);
     setLoading(false);
   };

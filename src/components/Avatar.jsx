@@ -5,15 +5,12 @@ Command: npx gltfjsx@6.2.3 public/models/64f1a714fe61576b46f27ca2.glb -o src/com
 
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { button, useControls } from "leva";
 import React, { useEffect, useRef, useState } from "react";
 
 import * as THREE from "three";
 import { useChat } from "../hooks/useChat";
 import { facialExpressions } from '../staticData/facialExpressions'
 import { corresponding } from '../staticData/corresponding'
-
-let setupMode = false;
 
 export function Avatar(props) {
   const { nodes, materials, scene } = useGLTF(
@@ -27,10 +24,8 @@ export function Avatar(props) {
   const [animation, setAnimation] = useState(
     animations.find((a) => a.name === "Idle") ? "Idle" : animations[0].name // Check if Idle animation exists otherwise use first animation
   );
-// 人物物件區
+  // 人物物件區
   const [blink, setBlink] = useState(false);
-  const [winkLeft, setWinkLeft] = useState(false);
-  const [winkRight, setWinkRight] = useState(false);
   const [facialExpression, setFacialExpression] = useState("");
   const [audio, setAudio] = useState();
 
@@ -72,20 +67,11 @@ export function Avatar(props) {
           value,
           speed
         );
-
-        if (!setupMode) {
-          try {
-            set({
-              [target]: value,
-            });
-          } catch (e) {}
-        }
       }
     });
   };
 
   useFrame(() => {
-    !setupMode &&
       Object.keys(nodes.EyeLeft.morphTargetDictionary).forEach((key) => {
         const mapping = facialExpressions[facialExpression];
         if (key === "eyeBlinkLeft" || key === "eyeBlinkRight") {
@@ -98,13 +84,8 @@ export function Avatar(props) {
         }
       });
 
-    lerpMorphTarget("eyeBlinkLeft", blink || winkLeft ? 1 : 0, 0.5);
-    lerpMorphTarget("eyeBlinkRight", blink || winkRight ? 1 : 0, 0.5);
-
-    // LIPSYNC
-    if (setupMode) {
-      return;
-    }
+    lerpMorphTarget("eyeBlinkLeft", blink ? 1 : 0, 0.5);
+    lerpMorphTarget("eyeBlinkRight", blink ? 1 : 0, 0.5);
 
     const appliedMorphTargets = [];
     if (message && lipsync) {
@@ -129,72 +110,6 @@ export function Avatar(props) {
       lerpMorphTarget(value, 0, 0.1);
     });
   });
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-  useControls("FacialExpressions", {
-    chat: button(() => chat()),
-    winkLeft: button(() => {
-      setWinkLeft(true);
-      setTimeout(() => setWinkLeft(false), 300);
-    }),
-    winkRight: button(() => {
-      setWinkRight(true);
-      setTimeout(() => setWinkRight(false), 300);
-    }),
-    animation: {
-      value: animation,
-      options: animations.map((a) => a.name),
-      onChange: (value) => setAnimation(value),
-    },
-    facialExpression: {
-      options: Object.keys(facialExpressions),
-      onChange: (value) => setFacialExpression(value),
-    },
-    enableSetupMode: button(() => {
-      setupMode = true;
-    }),
-    disableSetupMode: button(() => {
-      setupMode = false;
-    }),
-    logMorphTargetValues: button(() => {
-      const emotionValues = {};
-      Object.keys(nodes.EyeLeft.morphTargetDictionary).forEach((key) => {
-        if (key === "eyeBlinkLeft" || key === "eyeBlinkRight") {
-          return; // eyes wink/blink are handled separately
-        }
-        const value =
-          nodes.EyeLeft.morphTargetInfluences[
-            nodes.EyeLeft.morphTargetDictionary[key]
-          ];
-        if (value > 0.01) {
-          emotionValues[key] = value;
-        }
-      });
-      console.log(JSON.stringify(emotionValues, null, 2));
-    }),
-  });
-
-  const [, set] = useControls("MorphTarget", () =>
-    Object.assign(
-      {},
-      ...Object.keys(nodes.EyeLeft.morphTargetDictionary).map((key) => {
-        return {
-          [key]: {
-            label: key,
-            value: 0,
-            min: nodes.EyeLeft.morphTargetInfluences[
-              nodes.EyeLeft.morphTargetDictionary[key]
-            ],
-            max: 1,
-            onChange: (val) => {
-              if (setupMode) {
-                lerpMorphTarget(key, val, 1);
-              }
-            },
-          },
-        };
-      })
-    )
-  );
 
   useEffect(() => {
     let blinkTimeout;

@@ -8,22 +8,22 @@ export const ChatProvider = ({ children }) => {
   const [message, setMessage] = useState();
   const [loading, setLoading] = useState(false);
   const [cameraZoomed, setCameraZoomed] = useState(true);
-  const onMessagePlayed = () => {
-    setMessages((messages) => messages.slice(1));
-  };
-
   const chat = async (message) => {
     setLoading(true);
-    // @TODO 把註解弄回來
-    // const data = await openAIAPI.sendMessageToOpenAi(message);
-    // const resp = (await data.json()).response;
-    const data = {
-      "response": "嗨，你好！有什麼可以幫助你的嗎？",
-      "role": "assistant"
+    try {
+      const response = await openAIAPI.sendMessageToOpenAi(message);
+      
+      setMessages(() => [response]);
+      setLoading(false);
+    } catch (e) {
+      console.error(e.message)
+      setLoading(false);
     }
-    const resp = data.response;
-    setMessages((messages) => [...messages, ...resp]);
-    setLoading(false);
+  };
+
+  const onMessagePlayed = () => {
+    setMessages((messages) => messages.slice(1));
+    console.log(messages.slice(1))
   };
 
   useEffect(() => {
@@ -33,6 +33,7 @@ export const ChatProvider = ({ children }) => {
       setMessage(null);
     }
   }, [messages]);
+
 
   return (
     <ChatContext.Provider

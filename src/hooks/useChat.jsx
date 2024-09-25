@@ -23,7 +23,6 @@ export const ChatProvider = ({ children }) => {
 
   const onMessagePlayed = () => {
     setMessages((messages) => messages.slice(1));
-    console.log(messages.slice(1))
   };
 
   useEffect(() => {

@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { useChat } from "../hooks/useChat";
-import Test from "./Test";
 
 export const UI = ({ hidden, ...props }) => {
   const input = useRef();
@@ -107,7 +106,6 @@ export const UI = ({ hidden, ...props }) => {
           >
             發送
           </button>
-          <Test></Test>
         </div>
       </div>
     </>

@@ -14,11 +14,16 @@
 
 body {
   margin: 0;
+  width: 100% ;
+  height: 100% ;
   background-color: #faaca8;
-  background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+  background-size: cover;
+  background-image: url('texture/hospital_background2.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center bottom 40%;
 }
 
-body.greenScreen {
-  background-color: #00ff00;
-  background-image: none;
+
+@media screen and (min-width: 400px) and (max-width: 700px){
 }

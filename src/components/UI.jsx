@@ -1,12 +1,13 @@
 import { useRef } from "react";
 import { useChat } from "../hooks/useChat";
+import "../UI.css";
 
 export const UI = ({ hidden, ...props }) => {
   const input = useRef();
   const { chat, loading, cameraZoomed, setCameraZoomed, message } = useChat();
 
   const sendMessage = () => {
-    const text = { 'transcript' : input.current.value};
+    const text = { transcript: input.current.value };
     if (!loading && !message) {
       chat(text);
       input.current.value = "";
@@ -18,15 +19,17 @@ export const UI = ({ hidden, ...props }) => {
 
   return (
     <>
-      <div className="fixed top-0 left-0 right-0 bottom-0 z-10 flex justify-between p-4 flex-col pointer-events-none">
-        <div className="self-start backdrop-blur-md bg-white bg-opacity-50 p-4 rounded-lg">
-          <h1 className="font-black text-xl">MediMate - 智伴一把罩</h1>
-          <p>今天有甚麼需求嗎?</p>
+      <div className="container">
+        {/* 左上白框 */}
+        <div className="left-box">
+          <h1 className="title">MediMate - 智伴一把罩</h1>
+          <p className="secondTitle">今天有甚麼需求嗎?</p>
         </div>
-        <div className="w-full flex flex-col items-end justify-center gap-4">
+        {/* 右半邊按鈕區塊 */}
+        <div className="right-buttons">
           <button
             onClick={() => setCameraZoomed(!cameraZoomed)}
-            className="pointer-events-auto bg-pink-500 hover:bg-pink-600 text-white p-4 rounded-md"
+            className="zoom-button"
           >
             {cameraZoomed ? (
               <svg
@@ -35,7 +38,7 @@ export const UI = ({ hidden, ...props }) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="icon"
               >
                 <path
                   strokeLinecap="round"
@@ -50,7 +53,7 @@ export const UI = ({ hidden, ...props }) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="icon"
               >
                 <path
                   strokeLinecap="round"
@@ -63,13 +66,13 @@ export const UI = ({ hidden, ...props }) => {
           <button
             onClick={() => {
               const body = document.querySelector("body");
-              if (body.classList.contains("greenScreen")) {
+              if (body?.classList.contains("greenScreen")) {
                 body.classList.remove("greenScreen");
               } else {
                 body.classList.add("greenScreen");
               }
             }}
-            className="pointer-events-auto bg-pink-500 hover:bg-pink-600 text-white p-4 rounded-md"
+            className="green-screen-button"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +80,7 @@ export const UI = ({ hidden, ...props }) => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="icon"
             >
               <path
                 strokeLinecap="round"
@@ -86,9 +89,10 @@ export const UI = ({ hidden, ...props }) => {
             </svg>
           </button>
         </div>
-        <div className="flex items-center gap-2 pointer-events-auto max-w-screen-sm w-full mx-auto">
+        {/* 底下區塊 */}
+        <div className="bottom-section">
           <input
-            className="w-full placeholder:text-gray-800 placeholder:italic p-4 rounded-md bg-opacity-50 bg-white backdrop-blur-md"
+            className="input-field"
             placeholder="請輸入內容..."
             ref={input}
             onKeyDown={(e) => {
@@ -100,9 +104,7 @@ export const UI = ({ hidden, ...props }) => {
           <button
             disabled={loading || message}
             onClick={sendMessage}
-            className={`bg-pink-500 hover:bg-pink-600 text-white py-4 px-2 w-28 font-semibold uppercase rounded-md ${
-              loading || message ? "cursor-not-allowed opacity-30" : ""
-            }`}
+            className={`send-button ${loading || message ? "disabled" : ""}`}
           >
             發送
           </button>

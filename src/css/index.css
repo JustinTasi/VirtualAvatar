@@ -16,12 +16,13 @@ body {
   margin: 0;
   width: 100% ;
   height: 100% ;
-  background-color: #faaca8;
+  background-color: #c36910;
   background-size: cover;
-  background-image: url('texture/hospital_background2.jpg');
+  background-image: url('texture/hospital_background3_blur.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center bottom 40%;
+  backdrop-filter: 5rem;
 }
 
 

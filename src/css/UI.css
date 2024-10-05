@@ -1,8 +1,8 @@
 .container {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 2vh;
+  left: 5px;
+  right: 2vw;
   bottom: 0;
   z-index: 10;
   display: flex;
@@ -26,30 +26,29 @@
 }
 
 .right-buttons {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  margin-right: 100px;
-  gap: 1rem;
-  margin-right: inherit;
+  gap: 1.5vh 0;
 }
 
-.zoom-button {
+.selected-button {
+  cursor: pointer;
   pointer-events: auto;
-  background-color: #ec4899;
+  background-color: #e68e37;
   color: #fff;
   padding: 1rem;
-  border-radius: 0.375rem;
-  margin-right: 2rem;
+  border-radius: 0.5rem;
+  margin-right: 0.15%;
 }
 
-.zoom-button:hover{
-  background-color: #db2777;
+.selected-button:hover{
+  background-color: #b05c08;
 }
 
-.icon {
+.icon-size {
   width: 1.5rem;
   height: 1.5rem;
 }
@@ -67,7 +66,7 @@
 
 .input-field {
   width: 100%;
-  padding: 1rem;
+  padding: 0.6rem;
   border-radius: 0.375rem;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
@@ -79,18 +78,18 @@
 }
 
 .send-button {
-  background-color: #ec4899;
+  background-color: #e68e37;
   text-align: center;
   color: #fff;
-  padding: 1rem 0.5rem;
-  width: 7rem;
+  padding: 0.6rem 1rem;
+  width: 5rem;
   font-weight: 600;
   text-transform: uppercase;
-  border-radius: 0.375rem;
+  border-radius: 0.5rem;
 }
 
 .send-button:hover {
-  background-color: #db2777;
+  background-color: #b05c08;
 }
 
 .send-button.disabled {
@@ -109,7 +108,7 @@
     max-width: 250px;
     margin-left: 22.5vw;
   }
-  .zoom-button {
+  .selected-button {
     padding: 0.75rem;
   }
   .input-field,
@@ -130,7 +129,7 @@
     max-width: 280px;
     margin-left: 22vw;
   }
-  .zoom-button {
+  .selected-button {
     padding: 0.75rem;
   }
   .input-field,
@@ -141,21 +140,28 @@
 
 @media screen and (min-width: 600px) and (max-width: 799px){ 
   .title {
-    font-size: 30px;
+    font-size: 25px;
   }
   .secondTitle {
-    font-size: 25px;
+    font-size: 20px;
   }
   .bottom-section {
     max-width: 460px;
     margin-left: 22.5vw;
   }
-  .zoom-button {
+  .icon-size {
+    width: 30px;
+    height: 30px;
+  }
+  .selected-button {
     padding: 1.75rem;
   }
   .input-field,
   .send-button {
-    font-size: 20px;
+    padding: 0.9rem 1rem;
+  }
+  .send-button {
+    width: 8rem;
   }
 }
 
@@ -166,16 +172,24 @@
   .secondTitle {
     font-size: 25px;
   }
-  .zoom-button {
+  .icon-size {
+    width: 50px;
+    height: 50px;
+  }
+  .selected-button {
     padding: 1.7rem;
   }
   .bottom-section {
     max-width: 500px;
     margin-left: 26vw;
+    font-size: 30px;
   }
   .input-field,
   .send-button {
-    font-size: 20px;
+    padding: 0.9rem 1rem;
+  }
+  .send-button {
+    width: 8rem;
   }
 }
 
@@ -186,16 +200,24 @@
   .secondTitle {
     font-size: 25px;
   }
-  .zoom-button {
+  .icon-size {
+    width: 50px;
+    height: 50px;
+  }
+  .selected-button {
     padding: 1.75rem;
   }
   .bottom-section {
     max-width: 550px;
     margin-left: 28vw;
+    font-size: 25px;
   }
   .input-field,
   .send-button {
-    font-size: 20px;
+    padding: 1rem 1rem;
+  }
+  .send-button {
+    width: 8rem;
   }
 }
 
@@ -206,36 +228,52 @@
   .secondTitle {
     font-size: 28px;
   }
-  .zoom-button {
+  .icon-size {
+    width: 50px;
+    height: 50px;
+  }
+  .selected-button {
     padding: 2rem;
   }
   .bottom-section {
     max-width: 650px;
     margin-left: 32.5vw;
+    font-size: 30px;
   }
   .input-field,
   .send-button {
-    font-size: 20px;
+    padding: 1rem 1rem;
+  }
+  .send-button {
+    width: 7rem;
   }
 }
 
 @media screen and (min-width: 1500px) and (max-width: 1850px){ 
   .title {
-    font-size: 32px;
+    font-size: 25px;
   }
   .secondTitle {
-    font-size: 28px;
+    font-size: 20px;
   }
-  .zoom-button {
+  .selected-button {
     padding: 2rem;
   }
+  .icon-size {
+    width: 35px;
+    height: 35px;
+  }
   .bottom-section {
-    max-width: 700px;
+    max-width: 40vw;
     margin-left: 32.5vw;
+    font-size: 25px;
   }
   .input-field,
   .send-button {
-    font-size: 25px;
+    padding: 0.5rem 1rem;
+  }
+  .send-button {
+    width: 8rem;
   }
 }
 
@@ -246,16 +284,24 @@
   .secondTitle {
     font-size: 28px;
   }
-  .zoom-button {
+  .selected-button {
     padding: 2rem;
+  }
+  .icon-size {
+    width: 50px;
+    height: 50px;
   }
   .bottom-section {
     max-width: 700px;
     margin-left: 35vw;
+    font-size: 30px;
   }
   .input-field,
   .send-button {
-    font-size: 25px;
+    padding: 1rem 1rem;
+  }
+  .send-button {
+    width: 8rem;
   }
 }
 
@@ -266,15 +312,15 @@
   .secondTitle {
     font-size: 28px;
   }
-  .zoom-button {
+  .selected-button {
     padding: 2rem;
   }
   .bottom-section {
     max-width: 700px;
-    margin-left: 40vw;
-  }
-  .input-field,
-  .send-button {
+    margin-left: 38vw;
     font-size: 25px;
+  }
+  .send-button {
+    width: 6rem;
   }
 }

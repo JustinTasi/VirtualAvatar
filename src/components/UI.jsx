@@ -1,6 +1,9 @@
 import { useRef } from "react";
 import { useChat } from "../hooks/useChat";
 import "../css/UI.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGamepad, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
+
 
 export const UI = ({ hidden, ...props }) => {
   const input = useRef();
@@ -29,16 +32,16 @@ export const UI = ({ hidden, ...props }) => {
         <div className="right-buttons">
           <button
             onClick={() => setCameraZoomed(!cameraZoomed)}
-            className="zoom-button"
+            className="selected-button"
           >
             {cameraZoomed ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                viewBox="0 0 24 24"
+                viewBox="0 0 25 25"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="icon"
+                className="icon-size"
               >
                 <path
                   strokeLinecap="round"
@@ -50,10 +53,10 @@ export const UI = ({ hidden, ...props }) => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                viewBox="0 0 24 24"
+                viewBox="0 0 25 25"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="icon"
+                className="icon-size"
               >
                 <path
                   strokeLinecap="round"
@@ -63,6 +66,8 @@ export const UI = ({ hidden, ...props }) => {
               </svg>
             )}
           </button>
+          <a className="selected-button"><FontAwesomeIcon icon={faUserDoctor} className="icon-size"/></a>
+          <a className="selected-button"><FontAwesomeIcon icon={faGamepad} className="icon-size"/></a>
         </div>
         {/* 底下區塊 */}
         <div className="bottom-section">

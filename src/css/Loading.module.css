@@ -1,0 +1,184 @@
+.container {
+  margin-top: 8vh;
+  display: flex;
+  justify-content: center;
+}
+
+.container .notice {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  min-width: 500px;
+}
+
+.container .notice .title {
+  font-size: 3rem;
+  color: #6b9080;
+  margin: 2rem 0;
+}
+
+.container .notice .list {
+  display: flex;
+  flex-direction: column;
+}
+
+.container .notice .list .option {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  margin: 0.7rem 0;
+  border: 0.2rem solid;
+  border-radius: 1rem;
+  border-color: #e0e0d8;
+  font-size: 1rem; /* 原本的 $bigSize 替換為合適的值 */
+  transition: transform 0.2s ease;
+}
+
+.container .notice .list .option .optionbox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.container .notice .list .option .optionbox .optionTitle {
+  margin-left: 2rem;
+}
+
+.container .notice .list .option .optionbox .date {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  color: #777777;
+  letter-spacing: 0.1rem;
+}
+
+.container .notice .list .option:hover {
+  transform: scale(1.05);
+}
+
+.container .separator {
+  width: 0.1rem;
+  height: 65vh;
+  text-align: center;
+  background-color: #b6b4a6;
+  margin: 0 2.5vw;
+  margin-top: 6vh;
+}
+
+@media (max-width: 820px) {
+  .container .separator {
+    display: none;
+  }
+}
+
+.container .login {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  min-width: 300px;
+  margin-top: 15vh;
+}
+
+.container .login .inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-size: 1rem; /* 原本的 $bigSize 替換為合適的值 */
+  letter-spacing: 0.1rem;
+}
+
+.container .login .inputs .input {
+  width: 100%;
+  height: 6vh;
+  margin: 1rem 0;
+  padding-left: 1rem;
+  letter-spacing: 0.1rem;
+  background-color: #ecebe4;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem; /* 原本的 $bigSize 替換為合適的值 */
+}
+
+.container .login .inputs .forgetPasswordTitle {
+  text-align: right;
+}
+
+.container .login .inputs .forgetPasswordTitle .forgetPassword {
+  color: #6b9080;
+}
+
+.container .login .inputs .buttons {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.container .login .inputs .buttons .hintContainer {
+  display: flex;
+  position: relative;
+}
+
+.container .login .inputs .buttons .hintContainer .columnBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .login .inputs .buttons .hintContainer .hintSection {
+  margin-top: 0.5vh;
+}
+
+.container .login .inputs .buttons .hintContainer .hintSection .hintButtons {
+  display: flex;
+  flex-direction: column;
+  background-color: #cfd1d8;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+}
+
+.container .login .inputs .buttons .hintContainer .hintSection .hintButtons .button {
+  width: 6.5vw;
+  min-width: 125px;
+  margin: 0;
+  padding: 0 0.5rem;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font-size: 0.8rem; /* 原本的 $smallSize 替換為合適的值 */
+}
+
+.container .login .inputs .buttons .hintContainer .hintSection .hintButtons .button:hover {
+  color: rgb(65, 65, 218);
+  border-radius: 0.5rem;
+  background-color: #e1e5ee;
+}
+
+.container .login .inputs .buttons .button {
+  height: fit-content;
+  margin: 0 2rem;
+  padding: 1rem 2.5rem;
+  font-size: 1rem; /* 原本的 $regularSize 替換為合適的值 */
+  text-align: center;
+  background-color: #ecebe4;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.container .login .inputs .buttons .button:hover {
+  background-color: #b6b4a6;
+}
+
+@media (max-width: 820px) {
+  .container .login {
+    width: 60vw;
+  }
+}
+
+@media (max-width: 820px) {
+  .container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}

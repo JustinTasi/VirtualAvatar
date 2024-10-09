@@ -1,14 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useChat } from "../hooks/useChat";
 import "../css/UI.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGamepad, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
-
+import ConsultPopup from "../popup/ConsultPopup.jsx"
 
 export const UI = ({ hidden, ...props }) => {
   const input = useRef();
   const { chat, loading, cameraZoomed, setCameraZoomed, message } = useChat();
-
+  const [isConsultPopupOpen, setIsConsultPopupOpen] = useState(false);
   const sendMessage = () => {
     const text = { transcript: input.current.value };
     if (!loading && !message) {
@@ -66,7 +66,7 @@ export const UI = ({ hidden, ...props }) => {
               </svg>
             )}
           </button>
-          <a className="selected-button"><FontAwesomeIcon icon={faUserDoctor} className="icon-size"/></a>
+          <a className="selected-button" onClick={() => setIsConsultPopupOpen(!isConsultPopupOpen)}><FontAwesomeIcon icon={faUserDoctor} className="icon-size"/></a>
           <a className="selected-button"><FontAwesomeIcon icon={faGamepad} className="icon-size"/></a>
         </div>
         {/* 底下區塊 */}
@@ -90,6 +90,7 @@ export const UI = ({ hidden, ...props }) => {
           </button>
         </div>
       </div>
+      {isConsultPopupOpen && <ConsultPopup setIsOpen={setIsConsultPopupOpen}/>}
     </>
   );
 };

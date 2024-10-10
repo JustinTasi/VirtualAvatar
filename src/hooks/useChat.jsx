@@ -11,7 +11,7 @@ export const ChatProvider = ({ children }) => {
   const chat = async (message) => {
     setLoading(true);
     try {
-      const response = await openAIAPI.sendMessageToOpenAi(message);
+      const response = await openAIAPI.chatWithOpenAi(message);
       
       setMessages(() => [response]);
       setLoading(false);

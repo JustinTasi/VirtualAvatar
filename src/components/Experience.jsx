@@ -6,6 +6,7 @@ import { Avatar } from "./Avatar";
 const Dots = (props) => {
   const { loading } = useChat();
   const [loadingText, setLoadingText] = useState("");
+
   useEffect(() => {
     if (loading) {
       const interval = setInterval(() => {
@@ -32,7 +33,7 @@ const Dots = (props) => {
   );
 };
 
-export const Experience = () => {
+export const Experience = ({avatarConfig}) => {
   const cameraControls = useRef();
   const { cameraZoomed } = useChat();
 
@@ -51,11 +52,10 @@ export const Experience = () => {
     <>
       <CameraControls ref={cameraControls} />
       <Environment preset="sunset" />
-      {/* Wrapping Dots into Suspense to prevent Blink when Troika/Font is loaded */}
       <Suspense>
         <Dots position-y={1.75} position-x={-0.02} />
       </Suspense>
-      <Avatar />
+      <Avatar avatarConfig={avatarConfig}/>
       <ContactShadows opacity={0.7} />
     </>
   );

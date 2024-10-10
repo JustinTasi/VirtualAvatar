@@ -2,11 +2,14 @@ import API from './fetchUtil';
 
 const BASE_URL = "medicament/api"
 const openAIAPI = {
-  'sendMessageToOpenAi': (data) =>
-    API.postAPI(`${BASE_URL}/openAi`, data),
+  'chatWithOpenAi': (message) =>
+    API.postAPI(`${BASE_URL}/chatWithOpenAi`, message),
 
-  'sendUncomfortableMessage': (data) =>
-    API.postAPI(`${BASE_URL}/openAi`, data),
+  'sendUncomfortableMessage': (message) =>
+    API.postAPI(`${BASE_URL}/sendMessage`, message),
+
+  'getLineId': () =>
+    API.postAPI(`${BASE_URL}/openAi`),
 }
 
 export default openAIAPI;

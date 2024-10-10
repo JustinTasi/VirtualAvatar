@@ -1,19 +1,14 @@
-import { Loader } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { Leva } from "leva";
-import { Experience } from "./components/Experience";
-import { UI } from "./components/UI";
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AccessDeny from "./pages/AccessDeny";
+import Avatar from './pages/Avatar';
 
 export default function App() {
   return (
     <>
-      <Loader />
-      <Leva hidden />
-      <UI />
-      <Canvas shadows camera={{ position: [0, 0, 1], fov: 30 }}>
-        <Experience />
-      </Canvas>
+      <Routes>
+        <Route path="/accessDeny" element={<AccessDeny/>} />
+        <Route path="/" element={<Avatar/>} />
+      </Routes>
     </>
   );
 }

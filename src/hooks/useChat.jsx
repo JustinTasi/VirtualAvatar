@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import openAIAPI from '../../services/OpenAIAPI'
+import openAIAPI from '../../services/BackEndAPI'
 
 const ChatContext = createContext();
 

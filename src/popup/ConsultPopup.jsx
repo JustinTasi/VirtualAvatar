@@ -2,7 +2,7 @@ import styles from '../css/ConsultPopup.module.css';
 import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-import openAIAPI from '../../services/OpenAIAPI';
+import openAIAPI from '../../services/BackEndAPI';
 import { useLoading } from '../hooks/useLoading';
 import { useMessageModal } from '../hooks/useMessageModal';
 

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useMessageModal } from './useMessageModal';
-import openAIAPI from '../../services/OpenAIAPI';
+import BackEndAPI from '../../services/BackEndAPI';
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext(null);
@@ -25,22 +25,21 @@ export function AuthProvider({ children }) {
     //   }
 
     //   if(!lineId) {
-    //     response = await openAIAPI.getLineId();
+    //     response = await BackEndAPI.getLineId();
 
     //     localStorage.setItem('lineId', response.lineId);
     //   } else if (!token){
-    //     response = await openAIAPI.changeBackEndToken(lineId)
+    //     response = await BackEndAPI.changeBackEndToken(lineId)
 
     //     localStorage.setItem('lineId', response.lineId);
     //     setAuthority(response.userId)
     //   } else {
-    //     navigate("/");
+    //     navigate("/accessDeny");
     //   }
     // };
 
     // fetchLoginUser();
-    
-    navigate("/accessDeny");
+    navigate("/")
   }, []);
 
   return (

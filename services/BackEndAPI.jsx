@@ -1,7 +1,7 @@
 import API from './fetchUtil';
 
 const BASE_URL = "medicament/api"
-const openAIAPI = {
+const BackEndAPI = {
   'chatWithOpenAi': (message) =>
     API.postAPI(`${BASE_URL}/chatWithOpenAi`, message),
 
@@ -9,7 +9,10 @@ const openAIAPI = {
     API.postAPI(`${BASE_URL}/sendMessage`, message),
 
   'getLineId': () =>
-    API.postAPI(`${BASE_URL}/openAi`),
+    API.postAPI(`${BASE_URL}/getLineToken`),
+  
+  'getIsFirstTimeUseRecord': () =>
+    API.getAPI(`${BASE_URL}/record`),
 }
 
-export default openAIAPI;
+export default BackEndAPI;

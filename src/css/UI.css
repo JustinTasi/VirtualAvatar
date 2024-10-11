@@ -9,22 +9,30 @@
   justify-content: space-between;
   padding: 1rem;
   flex-direction: column;
-  pointer-events: none;
 }
 
-.left-box {
-  align-self: flex-start;
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90vw;
+}
+
+.columnBox {
+  display: flex;
+  flex-direction: column;
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.5);
   padding: 1rem;
-  margin-left: 20px;
-  margin-top: 5px;
   border-radius: 0.5rem;
+  margin-left: 2vw;
+  width: auto;
 }
 
 .title {
   font-weight: 900;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
+  color: black
 }
 
 .right-buttons {
@@ -101,7 +109,7 @@
 
 @media screen and (min-width: 300px) and (max-width: 400px){ 
   .title {
-    font-size: 20px;
+    font-size: 18px;
   }
   .secondTitle {
     font-size: 15px;
@@ -164,6 +172,9 @@
   }
   .send-button {
     width: 8rem;
+  }
+  .box {
+    width: 95vw;
   }
 }
 
@@ -305,6 +316,9 @@
   .send-button {
     width: 8rem;
   }
+  .box {
+    width: 95vw;
+  }
 }
 
 @media screen and (min-width: 2500px) and (max-width: 2800px){ 
@@ -324,5 +338,8 @@
   }
   .send-button {
     width: 6rem;
+  }
+  .box {
+    width: 95vw;
   }
 }

@@ -4,8 +4,9 @@ import "../css/UI.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGamepad, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
 import ConsultPopup from "../popup/ConsultPopup.jsx"
+import ChangeAvatar from "../components/ChangeAvatar"
 
-export const UI = ({ hidden, ...props }) => {
+export const UI = ({ setAvatarChange, hidden, ...props }) => {
   const input = useRef();
   const { chat, loading, cameraZoomed, setCameraZoomed, message } = useChat();
   const [isConsultPopupOpen, setIsConsultPopupOpen] = useState(false);
@@ -23,10 +24,13 @@ export const UI = ({ hidden, ...props }) => {
   return (
     <>
       <div className="container">
-        {/* 左上白框 */}
-        <div className="left-box">
-          <h1 className="title">MediMate - 智伴一把罩</h1>
-          <p className="secondTitle">今天有甚麼需求嗎?</p>
+        {/* 上方元件 */}
+        <div className="box">
+          <div className="columnBox">
+            <h1 className="title">MediMate - 智伴一把罩</h1>
+            <p className="secondTitle">今天有甚麼需求嗎?</p>
+          </div>
+          <ChangeAvatar handleAvatarChange={setAvatarChange} />
         </div>
         {/* 右半邊按鈕區塊 */}
         <div className="right-buttons">

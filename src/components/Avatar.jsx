@@ -9,11 +9,11 @@ import { corresponding } from '../staticData/corresponding'
 
 export function Avatar(props) {
   const { nodes, materials, scene } = useGLTF(
-    "/models/testAvatar.glb"
+    "/models/girlAvatar1.glb"
   );
   const { message, onMessagePlayed } = useChat();
   const [lipsync, setLipsync] = useState();
-  const { animations } = useGLTF("/models/animations.glb");
+  const { animations } = useGLTF("/models/girlAnimations1.glb");
   const group = useRef();
   const { actions, mixer } = useAnimations(animations, group);
   const [animation, setAnimation] = useState(
@@ -198,5 +198,5 @@ export function Avatar(props) {
   );
 }
 
-useGLTF.preload("/models/testAvatar.glb");
-useGLTF.preload("/models/animations.glb");
+useGLTF.preload("/models/girlAvatar1.glb");
+useGLTF.preload("/models/girlAnimations1.glb");

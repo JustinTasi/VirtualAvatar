@@ -1,23 +1,32 @@
-import { useAnimations, useGLTF } from "@react-three/drei";
+import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import React, { useEffect, useRef, useState } from "react";
-
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import * as THREE from "three";
 import { useChat } from "../hooks/useChat";
 import { facialExpressions } from '../staticData/facialExpressions'
 import { corresponding } from '../staticData/corresponding'
 
-export function Avatar(props) {
-  const { nodes, materials, scene } = useGLTF(
-    "/models/girlAvatar1.glb"
-  );
+useGLTF.preload("/glb/MaleDoctor1.glb");
+useGLTF.preload("/glb/MaleDoctor2.glb");
+useGLTF.preload("/glb/FemaleDoctor1.glb");
+useGLTF.preload("/glb/FemaleDoctor2.glb");
+
+export function Avatar({avatarConfig, ...props}) {
+  const avatarModel = useMemo(() => avatarConfig?.glbPath, [avatarConfig]);
+  const defaultStartAnimationPath = useMemo(() => avatarConfig?.defaultStartAnimationPath, [avatarConfig]);  
+  const defaultStandingAnimationPath = useMemo(() => avatarConfig?.defaultStandingAnimationPath, [avatarConfig]);  
+
+  const { nodes, materials, scene } = useGLTF(avatarModel);
   const { message, onMessagePlayed } = useChat();
   const [lipsync, setLipsync] = useState();
-  const { animations } = useGLTF("/models/girlAnimations1.glb");
+  const { animations: wavingAnimation } = useFBX(defaultStartAnimationPath);
+  const { animations: idleAnimation } = useFBX(defaultStandingAnimationPath);
+  idleAnimation[0].name = "Idle"
+  wavingAnimation[0].name = "Waving"
   const group = useRef();
   const { actions, mixer } = useAnimations(animations, group);
   const [animation, setAnimation] = useState(
-    animations.find((a) => a.name === "Idle") ? "Idle" : animations[0].name // Check if Idle animation exists otherwise use first animation
+    avatarAnimations
   );
   let setupMode = false;
   // 人物物件區
@@ -28,7 +37,7 @@ export function Avatar(props) {
   useEffect(() => {
     console.log(message)
     if (!message) {
-      setAnimation("Idle");
+      setAnimation("animations/MaleDoctor1-Waving.fbx");
       return;
     }
     setAnimation(message.animation);
@@ -197,6 +206,3 @@ export function Avatar(props) {
     </group>
   );
 }
-
-useGLTF.preload("/models/girlAvatar1.glb");
-useGLTF.preload("/models/girlAnimations1.glb");

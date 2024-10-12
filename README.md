@@ -1,5 +1,6 @@
 # 開啟專案指令
-npm run dev
+1. npm run install --legacy-peer-deps (下載套件)
+2. npm run dev (啟動伺服器)
 
 # 創建虛擬人網址(取得.glb檔案)
 https://readyplayer.me/

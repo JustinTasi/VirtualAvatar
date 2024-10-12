@@ -2,6 +2,9 @@ import API from './fetchUtil';
 
 const BASE_URL = "medicament/api"
 const BackEndAPI = {
+  'getLineVerifyPage': () =>
+    API.postAPI('linebot/medicament'),
+
   'chatWithOpenAi': (message) =>
     API.postAPI(`${BASE_URL}/chatWithOpenAi`, message),
 

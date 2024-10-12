@@ -13,39 +13,42 @@ export default function ChangeAvatar({ handleAvatarChange }) {
     { 
       'iconUrl': 'icon/girlAvatar1-icon.png',
       'url':'image/girlAvatar1.png',
-      'name':'小美'
+      'name':'角色1小美'
     },
     { 
       'iconUrl': 'icon/girlAvatar2-icon.png',
       'url':'image/girlAvatar2.png',
-      'name':'小帥'
+      'name':'角色2小帥'
     },
     { 
       'iconUrl': 'icon/girlAvatar3-icon.png',
       'url':'image/girlAvatar3.png',
-      'name':'大壯'
+      'name':'角色3大壯'
     },
   ];
 
   const avatarConfig = [
     {
-      modelPath: "/models/girlAvatar1.glb",
-      animationsPath: "/models/girlAnimations1.glb",
-      initialAnimation: "Idle",
+      glbPath: "/glb/MaleDoctor1.glb",
+      defualtAnimation: "/animations/MaleDoctor1-Waving.fbx",
       defualtVoice: "",
       defualtlipsync: "",
     },
     {
-      modelPath: "/models/girlAvatar2.glb",
-      animationsPath: "/models/girlAnimations1.glb",
-      initialAnimation: "Idle",
+      glbPath: "/glb/MaleDoctor1.glb",
+      defualtAnimation: "/animations/MaleDoctor2-Waving.fbx",
       defualtVoice: "",
       defualtlipsync: "",
     },
     {
-      modelPath: "/models/girlAvatar3.glb",
-      animationsPath: "/models/girlAnimations1.glb",
-      initialAnimation: "Idle",
+      glbPath: "/glb/FemaleDoctor1.glb",
+      defualtAnimation: "/animations/FemaleDoctor1-Waving.fbx",
+      defualtVoice: "",
+      defualtlipsync: "",
+    },
+    {
+      glbPath: "/glb/FemaleDoctor2.glb",
+      defualtAnimation: "/animations/FemaleDoctor2-Waving.fbx",
       defualtVoice: "",
       defualtlipsync: "",
     },
@@ -53,6 +56,7 @@ export default function ChangeAvatar({ handleAvatarChange }) {
 
   const handleSelect = (index) => {
     handleAvatarChange(avatarConfig[index]);
+    setAvatarDisplay(false)
   }
 
   useEffect(()=> {
@@ -75,7 +79,7 @@ export default function ChangeAvatar({ handleAvatarChange }) {
     if(isFirstTimeUse) {
       setAvatarDisplay(true)
     }
-    
+
   },[isFirstTimeUse])
 
   return (
@@ -98,7 +102,7 @@ export default function ChangeAvatar({ handleAvatarChange }) {
                     <img className={styles.avatarIcon} src={item.iconUrl} alt="" />
                     <p className={styles.avatarName}>{item.name}</p>
                   </div>
-                  <img src={item.url} className={styles.avatarImg} alt={`Character ${index + 1}`} /> 
+                  <img src={item.url} className={styles.avatarImg} alt={`角色 ${item.name} 圖片`} /> 
                   <button className={styles.selectBtn} onClick={() => handleSelect(index)}>選取</button>
                 </div>
               </SwiperSlide>

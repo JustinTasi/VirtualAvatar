@@ -54,7 +54,7 @@ export const Experience = ({avatarConfig}) => {
       <Environment preset="sunset" />
       <Suspense>
         <Dots position-y={1.75} position-x={-0.02} />
-      </Suspense>
+      </Suspense>{}
       <Avatar avatarConfig={avatarConfig}/>
       <ContactShadows opacity={0.7} />
     </>

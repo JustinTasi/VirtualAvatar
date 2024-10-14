@@ -5,6 +5,8 @@
 # 創建虛擬人網址(取得.glb檔案)
 https://readyplayer.me/
 
+下載時記得多下參數 ?morphTargets=ARKit,Oculus Visemes
+
 # 載入動作(需先有.fbx檔案，載入後挑動作)
 https://www.mixamo.com/#/
 
@@ -16,4 +18,4 @@ https://app.leonardo.ai/image-generation
 
 # 虛擬人(.glb檔) 轉react網址版若要套別的皮使用下列指令
 指令版 => 使用此 npx gltfjsx@6.5.0 {.glb檔案路徑}  
-網頁版 => 上傳.glb即可 https://github.com/pmndrs/gltfjsx
+網頁版 => 上傳.glb即可 https://gltf.pmnd.rs/

@@ -5,11 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGamepad, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
 import ConsultPopup from "../popup/ConsultPopup.jsx"
 import ChangeAvatar from "../components/ChangeAvatar"
+import { useMessageModal } from '../hooks/useMessageModal';
 
 export const UI = ({ setAvatarChange, hidden, ...props }) => {
   const input = useRef();
   const { chat, loading, cameraZoomed, setCameraZoomed, message } = useChat();
   const [isConsultPopupOpen, setIsConsultPopupOpen] = useState(false);
+  const { setIsShow, setModalProps } = useMessageModal();
   const sendMessage = () => {
     const text = { transcript: input.current.value };
     if (!loading && !message) {
@@ -19,6 +21,14 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
   };
   if (hidden) {
     return null;
+  }
+
+  const handleGamepadClick = () => {
+    setModalProps({
+      'type': 'SUCCESS',
+      'message': '未來開發項目，敬請期待！',
+    });
+    setIsShow(true);
   }
 
   return (
@@ -71,7 +81,7 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
             )}
           </button>
           <a className="selected-button" onClick={() => setIsConsultPopupOpen(!isConsultPopupOpen)}><FontAwesomeIcon icon={faUserDoctor} className="icon-size"/></a>
-          <a className="selected-button"><FontAwesomeIcon icon={faGamepad} className="icon-size"/></a>
+          <a className="selected-button" onClick={() => handleGamepadClick()}><FontAwesomeIcon icon={faGamepad} className="icon-size"/></a>
         </div>
         {/* 底下區塊 */}
         <div className="bottom-section">

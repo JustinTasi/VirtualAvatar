@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
     // };
 
     // fetchLoginUser();
-    navigate("/")
+    // navigate("/male1")
   }, []);
 
   return (

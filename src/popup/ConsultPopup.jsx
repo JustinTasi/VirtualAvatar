@@ -3,11 +3,9 @@ import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import openAIAPI from '../../services/BackEndAPI';
-import { useLoading } from '../hooks/useLoading';
 import { useMessageModal } from '../hooks/useMessageModal';
 
 export default function ConsultPopup({ setIsOpen }) {
-  const { setLoading } = useLoading();
   const { setIsShow, setModalProps } = useMessageModal();
   const { getValues, register, handleSubmit } = useForm();
   const sendMessage = async () => {

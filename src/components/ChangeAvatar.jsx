@@ -11,44 +11,49 @@ export default function ChangeAvatar({ handleAvatarChange }) {
   const [avatarDisplay, setAvatarDisplay] = useState(false);
   const characterImages = [
     { 
-      'iconUrl': 'icon/girlAvatar1-icon.png',
-      'url':'image/girlAvatar1.png',
-      'name':'角色1小美'
+      'iconUrl': 'icon/MaleDoctor1-icon.png',
+      'backgroundUrl':'image/changeAvatar/MaleDoctor1-bg.png',
+      'name':'吉利'
     },
     { 
-      'iconUrl': 'icon/girlAvatar2-icon.png',
-      'url':'image/girlAvatar2.png',
-      'name':'角色2小帥'
+      'iconUrl': 'icon/MaleDoctor2-icon.png',
+      'backgroundUrl':'image/changeAvatar/MaleDoctor2-bg.png',
+      'name':'卡哇'
     },
     { 
-      'iconUrl': 'icon/girlAvatar3-icon.png',
-      'url':'image/girlAvatar3.png',
-      'name':'角色3大壯'
+      'iconUrl': 'icon/FemaleDoctor1-icon.png',
+      'backgroundUrl':'image/changeAvatar/FemaleDoctor1-bg.png',
+      'name':'烏薩奇'
+    },
+    { 
+      'iconUrl': 'icon/FemaleDoctor2-icon.png',
+      'backgroundUrl':'image/changeAvatar/FemaleDoctor2-bg.png',
+      'name':'小桃'
     },
   ];
 
   const avatarConfig = [
     {
-      glbPath: "/glb/MaleDoctor1.glb",
-      defualtAnimation: "/animations/MaleDoctor1-Waving.fbx",
+      glbPath: "glb/MaleDoctor1.glb",
+      animationGlbPath: "summaryAnimations/MaleDoctor1-Animations.glb",
       defualtVoice: "",
       defualtlipsync: "",
     },
     {
-      glbPath: "/glb/MaleDoctor1.glb",
-      defualtAnimation: "/animations/MaleDoctor2-Waving.fbx",
+      glbPath: "glb/MaleDoctor2.glb",
+      animationGlbPath: "summaryAnimations/MaleDoctor2-Animations.glb",
       defualtVoice: "",
       defualtlipsync: "",
     },
     {
-      glbPath: "/glb/FemaleDoctor1.glb",
-      defualtAnimation: "/animations/FemaleDoctor1-Waving.fbx",
+      glbPath: "glb/FemaleDoctor1.glb",
+      animationGlbPath: "summaryAnimations/FemaleDoctor1-Animations.glb",
       defualtVoice: "",
       defualtlipsync: "",
     },
     {
-      glbPath: "/glb/FemaleDoctor2.glb",
-      defualtAnimation: "/animations/FemaleDoctor2-Waving.fbx",
+      glbPath: "glb/FemaleDoctor2.glb",
+      animationGlbPath: "summaryAnimations/FemaleDoctor2-Animations.glb",
       defualtVoice: "",
       defualtlipsync: "",
     },
@@ -102,7 +107,7 @@ export default function ChangeAvatar({ handleAvatarChange }) {
                     <img className={styles.avatarIcon} src={item.iconUrl} alt="" />
                     <p className={styles.avatarName}>{item.name}</p>
                   </div>
-                  <img src={item.url} className={styles.avatarImg} alt={`角色 ${item.name} 圖片`} /> 
+                  <img src={item.backgroundUrl} className={styles.avatarImg} alt={`角色 ${item.name} 圖片`} /> 
                   <button className={styles.selectBtn} onClick={() => handleSelect(index)}>選取</button>
                 </div>
               </SwiperSlide>

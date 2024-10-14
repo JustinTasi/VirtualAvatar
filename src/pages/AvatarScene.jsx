@@ -8,15 +8,30 @@ import { Experience } from "../components/Experience"
 export default function AvatarScene() {
   const [avatarConfig, setAvatarConfig] = useState(
     {
-      glbPath: "/glb/MaleDoctor1.glb",
-      defaultStartAnimationPath: "animations/MaleDoctor1-Waving.fbx",
-      defaultStandingAnimationPath: "animations/MaleDoctor1-Idle.fbx",
+      glbPath: "glb/MaleDoctor1.glb",
+      animationGlbPath: "summaryAnimations/MaleDoctor1-Animations.glb",
       defualtVoice: "",
       defualtlipsync: "",
-    }
+    },
+    {
+      glbPath: "glb/MaleDoctor2.glb",
+      animationGlbPath: "summaryAnimations/MaleDoctor2-Animations.glb",
+      defualtVoice: "",
+      defualtlipsync: "",
+    },
+    {
+      glbPath: "glb/FemaleDoctor1.glb",
+      animationGlbPath: "summaryAnimations/FemaleDoctor1-Animations.glb",
+      defualtVoice: "",
+      defualtlipsync: "",
+    },
+    {
+      glbPath: "glb/FemaleDoctor2.glb",
+      animationGlbPath: "summaryAnimations/FemaleDoctor2-Animations.glb",
+      defualtVoice: "",
+      defualtlipsync: "",
+    },
   );
-
-  console.log(avatarConfig);
 
   return (
     <>

@@ -6,28 +6,26 @@ import { useChat } from "../hooks/useChat";
 import { facialExpressions } from '../staticData/facialExpressions'
 import { corresponding } from '../staticData/corresponding'
 
-useGLTF.preload("/glb/MaleDoctor1.glb");
-useGLTF.preload("/glb/MaleDoctor2.glb");
-useGLTF.preload("/glb/FemaleDoctor1.glb");
-useGLTF.preload("/glb/FemaleDoctor2.glb");
+useGLTF.preload("glb/MaleDoctor1.glb");
+useGLTF.preload("glb/MaleDoctor2.glb");
+useGLTF.preload("glb/FemaleDoctor1.glb");
+useGLTF.preload("glb/FemaleDoctor2.glb");
 
 export function Avatar({avatarConfig, ...props}) {
   const avatarModel = useMemo(() => avatarConfig?.glbPath, [avatarConfig]);
-  const defaultStartAnimationPath = useMemo(() => avatarConfig?.defaultStartAnimationPath, [avatarConfig]);  
-  const defaultStandingAnimationPath = useMemo(() => avatarConfig?.defaultStandingAnimationPath, [avatarConfig]);  
-
+  const animationGlbPath = useMemo(() => avatarConfig?.animationGlbPath, [avatarConfig]);  
+  
+  const { animations } = useGLTF(animationGlbPath);
   const { nodes, materials, scene } = useGLTF(avatarModel);
   const { message, onMessagePlayed } = useChat();
   const [lipsync, setLipsync] = useState();
-  const { animations: wavingAnimation } = useFBX(defaultStartAnimationPath);
-  const { animations: idleAnimation } = useFBX(defaultStandingAnimationPath);
-  idleAnimation[0].name = "Idle"
-  wavingAnimation[0].name = "Waving"
   const group = useRef();
-  const { actions, mixer } = useAnimations(animations, group);
   const [animation, setAnimation] = useState(
-    avatarAnimations
+    animations.find((a) => a.name === "Idle") ? "Idle" : animations[0].name
   );
+  const { actions, mixer } = useAnimations(animations, group);
+
+
   let setupMode = false;
   // 人物物件區
   const [blink, setBlink] = useState(false);
@@ -37,7 +35,7 @@ export function Avatar({avatarConfig, ...props}) {
   useEffect(() => {
     console.log(message)
     if (!message) {
-      setAnimation("animations/MaleDoctor1-Waving.fbx");
+      setAnimation("Idle");
       return;
     }
     setAnimation(message.animation);
@@ -115,12 +113,23 @@ export function Avatar({avatarConfig, ...props}) {
 
   // 預設站姿搖擺動作
   useEffect(() => {
-    actions["Idle"]
-      .reset()
-      .fadeIn(mixer.stats.actions.inUse === 0 ? 0 : 0.5)
-      .play();
-    return () => actions[animation].fadeOut(0.5);
-  }, [animation]);
+    // 確保 Waving 動作存在並播放
+    if (actions['Waving']) {
+      actions['Waving'].reset().fadeIn(0.5).play();
+  
+      // 在 1 秒後切換到 Idle 動作
+      const timeout = setTimeout(() => {
+        if (actions['Idle']) {
+          actions['Waving'].fadeOut(1);
+          actions['Idle'].reset().fadeIn(1).play();
+        }
+      }, 1000); // 1 秒後切換
+  
+      // 清除定時器，防止內存洩漏
+      return () => clearTimeout(timeout);
+    }
+  }, [actions]);
+
 
   // 預設札眼動作
   useEffect(() => {
@@ -141,36 +150,6 @@ export function Avatar({avatarConfig, ...props}) {
   return (
     <group {...props} dispose={null} ref={group}>
       <primitive object={nodes.Hips} />
-      <skinnedMesh
-        name="Wolf3D_Body"
-        geometry={nodes.Wolf3D_Body.geometry}
-        material={materials.Wolf3D_Body}
-        skeleton={nodes.Wolf3D_Body.skeleton}
-      />
-      <skinnedMesh
-        name="Wolf3D_Outfit_Bottom"
-        geometry={nodes.Wolf3D_Outfit_Bottom.geometry}
-        material={materials.Wolf3D_Outfit_Bottom}
-        skeleton={nodes.Wolf3D_Outfit_Bottom.skeleton}
-      />
-      <skinnedMesh
-        name="Wolf3D_Outfit_Footwear"
-        geometry={nodes.Wolf3D_Outfit_Footwear.geometry}
-        material={materials.Wolf3D_Outfit_Footwear}
-        skeleton={nodes.Wolf3D_Outfit_Footwear.skeleton}
-      />
-      <skinnedMesh
-        name="Wolf3D_Outfit_Top"
-        geometry={nodes.Wolf3D_Outfit_Top.geometry}
-        material={materials.Wolf3D_Outfit_Top}
-        skeleton={nodes.Wolf3D_Outfit_Top.skeleton}
-      />
-      <skinnedMesh
-        name="Wolf3D_Hair"
-        geometry={nodes.Wolf3D_Hair.geometry}
-        material={materials.Wolf3D_Hair}
-        skeleton={nodes.Wolf3D_Hair.skeleton}
-      />
       <skinnedMesh
         name="EyeLeft"
         geometry={nodes.EyeLeft.geometry}
@@ -202,6 +181,31 @@ export function Avatar({avatarConfig, ...props}) {
         skeleton={nodes.Wolf3D_Teeth.skeleton}
         morphTargetDictionary={nodes.Wolf3D_Teeth.morphTargetDictionary}
         morphTargetInfluences={nodes.Wolf3D_Teeth.morphTargetInfluences}
+      />
+      <skinnedMesh
+        geometry={nodes.Wolf3D_Hair.geometry}
+        material={materials.Wolf3D_Hair}
+        skeleton={nodes.Wolf3D_Hair.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Wolf3D_Glasses.geometry}
+        material={materials.Wolf3D_Glasses}
+        skeleton={nodes.Wolf3D_Glasses.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Wolf3D_Outfit_Bottom.geometry}
+        material={materials.Wolf3D_Outfit_Bottom}
+        skeleton={nodes.Wolf3D_Outfit_Bottom.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Wolf3D_Outfit_Footwear.geometry}
+        material={materials.Wolf3D_Outfit_Footwear}
+        skeleton={nodes.Wolf3D_Outfit_Footwear.skeleton}
+      />
+      <skinnedMesh
+        geometry={nodes.Wolf3D_Outfit_Top.geometry}
+        material={materials.Wolf3D_Outfit_Top}
+        skeleton={nodes.Wolf3D_Outfit_Top.skeleton}
       />
     </group>
   );

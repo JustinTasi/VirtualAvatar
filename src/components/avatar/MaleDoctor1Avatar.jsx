@@ -1,22 +1,16 @@
-import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
+import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import React, { useEffect, useRef, useState, } from "react";
 import * as THREE from "three";
-import { useChat } from "../hooks/useChat";
-import { facialExpressions } from '../staticData/facialExpressions'
-import { corresponding } from '../staticData/corresponding'
+import { useChat } from "../../hooks/useChat";
+import { facialExpressions } from '../../staticData/facialExpressions'
+import { corresponding } from '../../staticData/corresponding'
 
 useGLTF.preload("glb/MaleDoctor1.glb");
-useGLTF.preload("glb/MaleDoctor2.glb");
-useGLTF.preload("glb/FemaleDoctor1.glb");
-useGLTF.preload("glb/FemaleDoctor2.glb");
 
-export function Avatar({avatarConfig, ...props}) {
-  const avatarModel = useMemo(() => avatarConfig?.glbPath, [avatarConfig]);
-  const animationGlbPath = useMemo(() => avatarConfig?.animationGlbPath, [avatarConfig]);  
-  
-  const { animations } = useGLTF(animationGlbPath);
-  const { nodes, materials, scene } = useGLTF(avatarModel);
+export function MaleDoctor1Avatar(...props) {
+  const { animations } = useGLTF("summaryAnimations/MaleDoctor1-Animations.glb");
+  const { nodes, materials, scene } = useGLTF("glb/MaleDoctor1.glb");
   const { message, onMessagePlayed } = useChat();
   const [lipsync, setLipsync] = useState();
   const group = useRef();

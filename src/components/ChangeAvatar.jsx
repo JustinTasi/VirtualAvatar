@@ -5,10 +5,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import BackEndAPI from '../../services/BackEndAPI';
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+
 
 export default function ChangeAvatar({ handleAvatarChange }) {
   const [isFirstTimeUse, setIsFirstTimeUse] = useState(false);
   const [avatarDisplay, setAvatarDisplay] = useState(false);
+  const navigate = useNavigate();
+
   const characterImages = [
     { 
       'iconUrl': 'icon/MaleDoctor1-icon.png',
@@ -32,35 +38,10 @@ export default function ChangeAvatar({ handleAvatarChange }) {
     },
   ];
 
-  const avatarConfig = [
-    {
-      glbPath: "glb/MaleDoctor1.glb",
-      animationGlbPath: "summaryAnimations/MaleDoctor1-Animations.glb",
-      defualtVoice: "",
-      defualtlipsync: "",
-    },
-    {
-      glbPath: "glb/MaleDoctor2.glb",
-      animationGlbPath: "summaryAnimations/MaleDoctor2-Animations.glb",
-      defualtVoice: "",
-      defualtlipsync: "",
-    },
-    {
-      glbPath: "glb/FemaleDoctor1.glb",
-      animationGlbPath: "summaryAnimations/FemaleDoctor1-Animations.glb",
-      defualtVoice: "",
-      defualtlipsync: "",
-    },
-    {
-      glbPath: "glb/FemaleDoctor2.glb",
-      animationGlbPath: "summaryAnimations/FemaleDoctor2-Animations.glb",
-      defualtVoice: "",
-      defualtlipsync: "",
-    },
-  ];
+  const avatarConfig = ["/male1", "/male2", "/female1", "/female2"];
 
   const handleSelect = (index) => {
-    handleAvatarChange(avatarConfig[index]);
+    navigate(avatarConfig[index])
     setAvatarDisplay(false)
   }
 
@@ -92,10 +73,11 @@ export default function ChangeAvatar({ handleAvatarChange }) {
       <p className={styles.word} onClick={() => setAvatarDisplay(true)}>切換角色</p>
       {avatarDisplay &&
         <div className={styles.modalWrap}>
+          <a className={styles.closeIcon} onClick={() => setAvatarDisplay(false)}><FontAwesomeIcon icon={faCircleXmark} className="icon-size"/></a>
           <Swiper
             spaceBetween={100} 
             slidesPerView={3}  
-            loop={true}        
+            loop={false}        
             centeredSlides={true} 
             navigation         
             pagination={{ clickable: true }}

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 
-// 檢查瀏覽器是否支援 Web Speech API
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = SpeechRecognition ? new SpeechRecognition() : null;
-
-const SpeechToText = () => {
+export default function Microphone({style, handleTextChange}) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = SpeechRecognition ? new SpeechRecognition() : null;
   const [text, setText] = useState('');
   const [isListening, setIsListening] = useState(false);
 
@@ -24,7 +24,7 @@ const SpeechToText = () => {
         setIsListening(false);
       };
     }
-  }, []);
+  }, [recognition]);
 
   // 啟動或停止語音識別
   const handleListen = () => {
@@ -42,14 +42,8 @@ const SpeechToText = () => {
   };
 
   return (
-    <div>
-      <h1>語音轉文字</h1>
-      <button onClick={handleListen}>
-        {isListening ? '停止聆聽' : '開始聆聽'}
-      </button>
-      <p>轉換結果: {text}</p>
-    </div>
+    <>
+      <a className={style} onClick={handleListen}><FontAwesomeIcon icon={faMicrophone} /></a>
+    </>
   );
 };
-
-export default SpeechToText;

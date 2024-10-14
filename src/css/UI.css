@@ -65,6 +65,7 @@
 
 .bottom-section {
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
@@ -72,6 +73,11 @@
   max-width: 500px;
   width: 100vw;
   margin-left: 25vw;
+}
+
+.microphone {
+  position: absolute;
+  left: 90%;
 }
 
 .input-field {

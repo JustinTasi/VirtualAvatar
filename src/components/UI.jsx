@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useChat } from "../hooks/useChat";
 import "../css/UI.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGamepad, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
+import { faGamepad, faUserDoctor, faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import ConsultPopup from "../popup/ConsultPopup.jsx"
 import ChangeAvatar from "../components/ChangeAvatar"
 import { useMessageModal } from '../hooks/useMessageModal';
@@ -95,6 +95,7 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
               }
             }}
           />
+          <a className="microphone"><FontAwesomeIcon icon={faMicrophone} /></a>
           <button
             disabled={loading || message}
             onClick={sendMessage}

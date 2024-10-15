@@ -1,22 +1,27 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useChat } from "../hooks/useChat";
-import "../css/UI.css";
+import styles from "../css/UI.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGamepad, faUserDoctor, faMicrophone } from "@fortawesome/free-solid-svg-icons";
+import { faGamepad, faUserDoctor } from "@fortawesome/free-solid-svg-icons";
 import ConsultPopup from "../popup/ConsultPopup.jsx"
 import ChangeAvatar from "../components/ChangeAvatar"
 import { useMessageModal } from '../hooks/useMessageModal';
+import SpeechToText from "../components/SpeechToText.jsx"
 
 export const UI = ({ setAvatarChange, hidden, ...props }) => {
-  const input = useRef();
-  const { chat, loading, cameraZoomed, setCameraZoomed, message } = useChat();
+  const { chat, loading, cameraZoomed, setCameraZoomed, message  } = useChat();
   const [isConsultPopupOpen, setIsConsultPopupOpen] = useState(false);
   const { setIsShow, setModalProps } = useMessageModal();
+  const [inputValue, setInputValue] = useState('');
+  
+  const [isVisible, setIsVisible] = useState(true);
+  const [fadeOut, setFadeOut] = useState(false);
+  
   const sendMessage = () => {
-    const text = { transcript: input.current.value };
+    const text = { transcript: inputValue };
     if (!loading && !message) {
       chat(text);
-      input.current.value = "";
+      setInputValue('');
     }
   };
   if (hidden) {
@@ -31,22 +36,35 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
     setIsShow(true);
   }
 
+  useEffect(() => {
+    if (message === '') {
+      setFadeOut(true); 
+      
+      setTimeout(() => {
+        setIsVisible(false); 
+      }, 500);
+    } else {
+      setFadeOut(false);
+      setIsVisible(true);
+    }
+  }, [message]);
+
   return (
     <>
-      <div className="container">
+      <div className={styles.container}>
         {/* 上方元件 */}
-        <div className="box">
-          <div className="columnBox">
-            <h1 className="title">MediMate - 智伴一把罩</h1>
-            <p className="secondTitle">今天有甚麼需求嗎?</p>
+        <div className={styles.box}>
+          <div className={styles.columnBox}>
+            <h1 className={styles.title}>MediMate - 智伴一把罩</h1>
+            <p className={styles.secondTitle}>今天有甚麼需求嗎?</p>
           </div>
           <ChangeAvatar handleAvatarChange={setAvatarChange} />
         </div>
         {/* 右半邊按鈕區塊 */}
-        <div className="right-buttons">
+        <div className={styles.rightButtons}>
           <button
             onClick={() => setCameraZoomed(!cameraZoomed)}
-            className="selected-button"
+            className={styles.selectedButton}
           >
             {cameraZoomed ? (
               <svg
@@ -55,7 +73,7 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
                 viewBox="0 0 25 25"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="icon-size"
+                className={styles.iconSize}
               >
                 <path
                   strokeLinecap="round"
@@ -70,7 +88,7 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
                 viewBox="0 0 25 25"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="icon-size"
+                className={styles.iconSize}
               >
                 <path
                   strokeLinecap="round"
@@ -80,26 +98,35 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
               </svg>
             )}
           </button>
-          <a className="selected-button" onClick={() => setIsConsultPopupOpen(!isConsultPopupOpen)}><FontAwesomeIcon icon={faUserDoctor} className="icon-size"/></a>
-          <a className="selected-button" onClick={() => handleGamepadClick()}><FontAwesomeIcon icon={faGamepad} className="icon-size"/></a>
+          <a className={styles.selectedButton} onClick={() => setIsConsultPopupOpen(!isConsultPopupOpen)}><FontAwesomeIcon icon={faUserDoctor} className={styles.iconSize}/></a>
+          <a className={styles.selectedButton} onClick={() => handleGamepadClick()}><FontAwesomeIcon icon={faGamepad} className={styles.iconSize}/></a>
         </div>
         {/* 底下區塊 */}
-        <div className="bottom-section">
-          <input
-            className="input-field"
-            placeholder="請輸入內容..."
-            ref={input}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                sendMessage();
-              }
-            }}
-          />
-          <a className="microphone"><FontAwesomeIcon icon={faMicrophone} /></a>
-          <button
-            disabled={loading || message}
-            onClick={sendMessage}
-            className={`send-button ${loading || message ? "disabled" : ""}`}
+        <div className={styles.bottomSection}>
+            {isVisible && (
+              <div className={`${styles.messageArrivedSection} ${fadeOut ? styles.fadeOut : ''}`}>
+                <textarea
+                  className={styles.messageContent}
+                  value={message}
+                  placeholder="等待接收回答..."
+                  readOnly
+                />
+              </div>
+            )}
+          <div className={styles.rowBox}>            
+            <input
+              className={styles.inputField}
+              placeholder="請輸入內容..."
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  sendMessage();
+                }
+              }}
+            />
+            <SpeechToText style={styles.microphone} handleInputChange={setInputValue}/>
+          </div>
+          <button disabled={loading || message} onClick={sendMessage}
+            className={`${styles.sendButton} ${loading || message ? "disabled" : ""}`}
           >
             發送
           </button>

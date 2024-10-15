@@ -18,6 +18,35 @@
   width: 90vw;
 }
 
+.messageArrivedSection {
+  position: absolute;
+  background-color: #fff;
+  padding: 3% 4%;
+  width: 20vw;
+  max-width: 500px;
+  height: 30vh;
+  bottom: 15vh;
+  left: -2vw;
+  border-radius: 1rem;
+  font-size: 20px;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.messageContent {
+  background-color: #d9d9d9;
+  resize: none;
+  padding: 5px 15px;
+  height: 100%;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
 .columnBox {
   display: flex;
   flex-direction: column;
@@ -35,7 +64,7 @@
   color: black
 }
 
-.right-buttons {
+.rightButtons {
   width: 97vw;
   display: flex;
   flex-direction: column;
@@ -44,7 +73,7 @@
   gap: 1.5vh 0;
 }
 
-.selected-button {
+.selectedButton {
   cursor: pointer;
   pointer-events: auto;
   background-color: #e68e37;
@@ -54,16 +83,16 @@
   margin-right: 0.15%;
 }
 
-.selected-button:hover{
+.selectedButton:hover{
   background-color: #b05c08;
 }
 
-.icon-size {
+.iconSize {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.bottom-section {
+.bottomSection {
   display: flex;
   position: relative;
   justify-content: center;
@@ -75,40 +104,63 @@
   margin-left: 25vw;
 }
 
-.microphone {
-  position: absolute;
-  left: 90%;
-}
-
-.input-field {
-  width: 100%;
-  padding: 0.6rem;
+.rowBox{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding: 0.4rem;
   border-radius: 0.375rem;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
 }
 
-.input-field::placeholder {
-  color: #4b5563;
+.microphone {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  padding: 5px 8px;
+  margin: 0 20px;
+  border-radius: 2rem;
+}
+
+.microphone:hover{
+  background-color: rgba(56, 50, 42, 0.541);
+}
+
+.inputField {
+  width: 100%;
+  padding: 0.2rem;
+  padding-left: 0.4rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0.5rem;
+}
+
+.inputField::placeholder {
+  color: #393c41;
   font-style: italic;
 }
 
-.send-button {
+
+.sendButton {
+  cursor: pointer;
   background-color: #e68e37;
   text-align: center;
   color: #fff;
-  padding: 0.6rem 1rem;
+  padding: 0.3rem;
+  height: 100%;
   width: 5rem;
   font-weight: 600;
   text-transform: uppercase;
   border-radius: 0.5rem;
 }
 
-.send-button:hover {
+.sendButton:hover {
   background-color: #b05c08;
 }
 
-.send-button.disabled {
+.sendButton.disabled {
   cursor: not-allowed;
   opacity: 0.3;
 }
@@ -120,15 +172,20 @@
   .secondTitle {
     font-size: 15px;
   }
-  .bottom-section {
+  .bottomSection {
     max-width: 250px;
     margin-left: 22.5vw;
   }
-  .selected-button {
-    padding: 0.75rem;
+  .messageArrivedSection{
+    font-size: 15px;
+    width: 60vw;
   }
-  .input-field,
-  .send-button {
+  .selectedButton {
+    padding: 0.75rem;
+    margin-right: 10px;
+  }
+  .inputField,
+  .sendButton {
     font-size: 13.5px;
     max-height: 3rem;
   }
@@ -141,15 +198,20 @@
   .secondTitle {
     font-size: 15px;
   }
-  .bottom-section {
+  .bottomSection {
     max-width: 280px;
     margin-left: 22vw;
   }
-  .selected-button {
+  .messageArrivedSection{
+    font-size: 15px;
+    width: 60vw;
+    max-width: 550px;
+  }
+  .selectedButton {
     padding: 0.75rem;
   }
-  .input-field,
-  .send-button {
+  .inputField,
+  .sendButton {
     font-size: 13.5px;
   }
 }
@@ -161,22 +223,24 @@
   .secondTitle {
     font-size: 20px;
   }
-  .bottom-section {
+  .bottomSection {
     max-width: 460px;
     margin-left: 22.5vw;
   }
-  .icon-size {
+  .iconSize {
     width: 30px;
     height: 30px;
   }
-  .selected-button {
+  .messageArrivedSection{
+    font-size: 18px;
+    width: 45vw;
+    left: 6vw;
+    max-width: 550px;
+  }
+  .selectedButton {
     padding: 1.75rem;
   }
-  .input-field,
-  .send-button {
-    padding: 0.9rem 1rem;
-  }
-  .send-button {
+  .sendButton {
     width: 8rem;
   }
   .box {
@@ -191,23 +255,25 @@
   .secondTitle {
     font-size: 25px;
   }
-  .icon-size {
+  .iconSize {
     width: 50px;
     height: 50px;
   }
-  .selected-button {
+  .selectedButton {
     padding: 1.7rem;
   }
-  .bottom-section {
+  .messageArrivedSection{
+    font-size: 18px;
+    width: 45vw;
+    left: 6vw;
+    max-width: 550px;
+  }
+  .bottomSection {
     max-width: 500px;
     margin-left: 26vw;
     font-size: 30px;
   }
-  .input-field,
-  .send-button {
-    padding: 0.9rem 1rem;
-  }
-  .send-button {
+  .sendButton {
     width: 8rem;
   }
 }
@@ -219,23 +285,25 @@
   .secondTitle {
     font-size: 25px;
   }
-  .icon-size {
+  .iconSize {
     width: 50px;
     height: 50px;
   }
-  .selected-button {
+  .messageArrivedSection{
+    font-size: 18px;
+    width: 40vw;
+    left: 5vw;
+    max-width: 550px;
+  }
+  .selectedButton {
     padding: 1.75rem;
   }
-  .bottom-section {
+  .bottomSection {
     max-width: 550px;
     margin-left: 28vw;
     font-size: 25px;
   }
-  .input-field,
-  .send-button {
-    padding: 1rem 1rem;
-  }
-  .send-button {
+  .sendButton {
     width: 8rem;
   }
 }
@@ -247,23 +315,25 @@
   .secondTitle {
     font-size: 28px;
   }
-  .icon-size {
+  .messageArrivedSection{
+    font-size: 22px;
+    width: 40vw;
+    left: 5vw;
+    max-width: 550px;
+  }
+  .iconSize {
     width: 50px;
     height: 50px;
   }
-  .selected-button {
+  .selectedButton {
     padding: 2rem;
   }
-  .bottom-section {
+  .bottomSection {
     max-width: 650px;
-    margin-left: 32.5vw;
+    margin-left: 30vw;
     font-size: 30px;
   }
-  .input-field,
-  .send-button {
-    padding: 1rem 1rem;
-  }
-  .send-button {
+  .sendButton {
     width: 7rem;
   }
 }
@@ -275,23 +345,25 @@
   .secondTitle {
     font-size: 20px;
   }
-  .selected-button {
+  .selectedButton {
     padding: 2rem;
   }
-  .icon-size {
+  .iconSize {
     width: 35px;
     height: 35px;
   }
-  .bottom-section {
+  .messageArrivedSection{
+    font-size: 22px;
+    width: 32.5vw;
+    left: 5vw;
+    max-width: 550px;
+  }
+  .bottomSection {
     max-width: 40vw;
     margin-left: 32.5vw;
     font-size: 25px;
   }
-  .input-field,
-  .send-button {
-    padding: 0.5rem 1rem;
-  }
-  .send-button {
+  .sendButton {
     width: 8rem;
   }
 }
@@ -303,23 +375,25 @@
   .secondTitle {
     font-size: 28px;
   }
-  .selected-button {
+  .messageArrivedSection{
+    font-size: 22px;
+    width: 32.5vw;
+    left: 3vw;
+    max-width: 550px;
+  }
+  .selectedButton {
     padding: 2rem;
   }
-  .icon-size {
+  .iconSize {
     width: 50px;
     height: 50px;
   }
-  .bottom-section {
+  .bottomSection {
     max-width: 700px;
     margin-left: 35vw;
     font-size: 30px;
   }
-  .input-field,
-  .send-button {
-    padding: 1rem 1rem;
-  }
-  .send-button {
+  .sendButton {
     width: 8rem;
   }
   .box {
@@ -331,22 +405,22 @@
   .title {
     font-size: 32px;
   }
-  .icon-size {
+  .iconSize {
     width: 50px;
     height: 50px;
   }
   .secondTitle {
     font-size: 28px;
   }
-  .selected-button {
+  .selectedButton {
     padding: 2rem;
   }
-  .bottom-section {
+  .bottomSection {
     max-width: 700px;
     margin-left: 38vw;
     font-size: 25px;
   }
-  .send-button {
+  .sendButton {
     width: 6rem;
   }
   .box {

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 
-export default function Microphone({style, handleTextChange}) {
+export default function Microphone({style, handleInputChange}) {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
   const recognition = SpeechRecognition ? new SpeechRecognition() : null;
-  const [text, setText] = useState('');
   const [isListening, setIsListening] = useState(false);
 
   useEffect(() => {
@@ -16,11 +16,16 @@ export default function Microphone({style, handleTextChange}) {
       // 當語音識別結果返回時
       recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
-        setText(transcript); // 將語音轉成的文字存儲到 state 中
+        handleInputChange(transcript); // 將語音轉成的文字存儲到 state 中
       };
 
       // 當語音識別結束時，停止聆聽
       recognition.onend = () => {
+        setIsListening(false);
+      };
+    }else{
+      recognition.onerror = (event) => {
+        console.error("Speech recognition error detected: " + event.error);
         setIsListening(false);
       };
     }

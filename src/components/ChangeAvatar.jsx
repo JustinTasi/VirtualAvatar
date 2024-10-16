@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from '../css/ChangeAvatar.module.css';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import BackEndAPI from '../../services/BackEndAPI';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function ChangeAvatar({ handleAvatarChange }) {
-  const [isFirstTimeUse, setIsFirstTimeUse] = useState(false);
   const [avatarDisplay, setAvatarDisplay] = useState(false);
   const navigate = useNavigate();
 
@@ -45,35 +43,12 @@ export default function ChangeAvatar({ handleAvatarChange }) {
     setAvatarDisplay(false)
   }
 
-  useEffect(()=> {
-    const fetchData = async () => {
-      try{
-        const response = await BackEndAPI.getIsFirstTimeUseRecord();
-
-        if (response.isFirstTimeUse) {
-          setIsFirstTimeUse(true)
-        }
-      } catch (e) {
-        console.log(e)
-      }
-    }
-
-    // fetchData();
-  },[])
-
-  useEffect(() => {
-    if(isFirstTimeUse) {
-      setAvatarDisplay(true)
-    }
-
-  },[isFirstTimeUse])
-
   return (
     <>
       <p className={styles.word} onClick={() => setAvatarDisplay(true)}>切換角色</p>
       {avatarDisplay &&
         <div className={styles.modalWrap}>
-          <a className={styles.closeIcon} onClick={() => setAvatarDisplay(false)}><FontAwesomeIcon icon={faCircleXmark} className="icon-size"/></a>
+          <a className={styles.closeIcon} onClick={() => setAvatarDisplay(false)}><FontAwesomeIcon icon={faCircleXmark} className={styles.iconSize}/></a>
           <Swiper
             spaceBetween={100} 
             slidesPerView={3}  

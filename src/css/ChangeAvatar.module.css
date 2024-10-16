@@ -105,7 +105,7 @@
   bottom: 90%;
 }
 
-.icon-size {
+.iconSize {
   width: 1.5rem;
   height: 1.5rem;
 }
@@ -126,7 +126,7 @@
     width: 20px;
     height: 20px;
   }
-  .icon-size {
+  .iconSize {
     width: 30px;
     height: 30px;
   }
@@ -174,7 +174,7 @@
     width: 30px;
     height: 30px;
   }
-  .icon-size {
+  .iconSize {
     width: 30px;
     height: 30px;
   }
@@ -197,7 +197,7 @@
   .bannerBox {
     width: 30vw;
   }
-  .icon-size {
+  .iconSize {
     width: 50px;
     height: 50px;
   }
@@ -224,7 +224,7 @@
   .bannerBox {
     width: 30vw;
   }
-  .icon-size {
+  .iconSize {
     width: 50px;
     height: 50px;
   }
@@ -248,7 +248,7 @@
     height: 4vh;
     font-size: 25px;
   }
-  .icon-size {
+  .iconSize {
     width: 50px;
     height: 50px;
   }
@@ -275,7 +275,7 @@
     height: 5vh;
     font-size: 28px;
   }
-  .icon-size {
+  .iconSize {
     width: 50px;
     height: 50px;
   }
@@ -306,7 +306,7 @@
   .bannerBox {
     width: 16vw;
   }
-  .icon-size {
+  .iconSize {
     width: 50px;
     height: 50px;
   }
@@ -334,7 +334,7 @@
   .rowBox {
     width: 7vw;
   }
-  .icon-size {
+  .iconSize {
     width: 50px;
     height: 50px;
   }

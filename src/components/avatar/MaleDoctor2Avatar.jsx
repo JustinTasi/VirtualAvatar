@@ -27,7 +27,7 @@ export function MaleDoctor2Avatar(...props) {
   const [audio, setAudio] = useState();
 
   useEffect(() => {
-    console.log(message)
+    // console.log(message)
     if (!message) {
       setAnimation("Idle");
       return;

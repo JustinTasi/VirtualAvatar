@@ -14,20 +14,15 @@ export function FemaleDoctor1Avatar(...props) {
   const { message, onMessagePlayed } = useChat();
   const [lipsync, setLipsync] = useState();
   const group = useRef();
-  const [animation, setAnimation] = useState(
-    animations.find((a) => a.name === "Idle") ? "Idle" : animations[0].name
-  );
+  const [animation, setAnimation] = useState('Idle');
   const { actions, mixer } = useAnimations(animations, group);
 
-
   let setupMode = false;
-  // 人物物件區
   const [blink, setBlink] = useState(false);
   const [facialExpression, setFacialExpression] = useState("");
   const [audio, setAudio] = useState();
 
   useEffect(() => {
-    console.log(message)
     if (!message) {
       setAnimation("Idle");
       return;
@@ -39,7 +34,7 @@ export function FemaleDoctor1Avatar(...props) {
     const audio = new Audio("data:audio/mp3;base64," + message.audio);
     audio.play();
     setAudio(audio);
-    audio.onended = onMessagePlayed;  
+    audio.onended = onMessagePlayed;
   }, [message]);
 
   const lerpMorphTarget = (target, value, speed = 0.1) => {
@@ -82,7 +77,7 @@ export function FemaleDoctor1Avatar(...props) {
     }
 
     const appliedMorphTargets = [];
-    if (message && lipsync) {
+    if ((message != '' || openMessages != '')  && lipsync) {
       const currentAudioTime = audio.currentTime;
       for (let i = 0; i < lipsync.mouthCues.length; i++) {
         const mouthCue = lipsync.mouthCues[i];
@@ -96,6 +91,7 @@ export function FemaleDoctor1Avatar(...props) {
         }
       }
     }
+    
 
     Object.values(corresponding).forEach((value) => {
       if (appliedMorphTargets.includes(value)) {
@@ -107,22 +103,12 @@ export function FemaleDoctor1Avatar(...props) {
 
   // 預設站姿搖擺動作
   useEffect(() => {
-    // 確保 Waving 動作存在並播放
-    if (actions['Waving']) {
-      actions['Waving'].reset().fadeIn(0.5).play();
-  
-      // 在 1 秒後切換到 Idle 動作
-      const timeout = setTimeout(() => {
-        if (actions['Idle']) {
-          actions['Waving'].fadeOut(1);
-          actions['Idle'].reset().fadeIn(1).play();
-        }
-      }, 1000); // 1 秒後切換
-  
-      // 清除定時器，防止內存洩漏
-      return () => clearTimeout(timeout);
-    }
-  }, [actions]);
+    actions[animation]
+      .reset()
+      .fadeIn(mixer.stats.actions.inUse === 0 ? 0 : 0.5)
+      .play();
+    return () => actions[animation].fadeOut(0.5);
+  }, [animation]);
 
 
   // 預設札眼動作

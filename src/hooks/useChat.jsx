@@ -8,7 +8,7 @@ const ChatContext = createContext();
 export const ChatProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState();
-  const [openMessages, setOpenMessages] = useState();
+  const [isUserClick, setIsUserClick] = useState(false);
   const [loading, setLoading] = useState(false);
   const [cameraZoomed, setCameraZoomed] = useState(true);
   const { userName } = useAuth();
@@ -17,7 +17,12 @@ export const ChatProvider = ({ children }) => {
   const chat = async (message) => {
     setLoading(true);
     try {
-      const response = await openAIAPI.chatWithOpenAi(message)
+      const response = await openAIAPI.chatWithOpenAi({
+        'userName':userName,
+        'charactor':location,
+        'transcript': message,
+      })
+      console.log(message);
       setMessages(() => [response]);
       setLoading(false);
     } catch (e) {
@@ -26,16 +31,22 @@ export const ChatProvider = ({ children }) => {
     }
   };
 
-  const openingAvatar = async () => {
-    try {
-      const response = await openAIAPI.getHelloUserInfo({'userName':userName, 'charactor':location})
-      setOpenMessages(response);
-      // console.log(openMessages)
-    } catch (e) {
-      console.error(e.message)
+  useEffect(() => {
+    const fetchHelloInfo = async () => {
+      setLoading(true);
+      try {
+        const response = await openAIAPI.getHelloUserInfo({'userName': userName, 'charactor': location})
+        
+        setMessage(response);
+      } catch (e) {
+        console.error(e.message)
+      }
+      setLoading(false);
     }
-  };
-  
+    if (isUserClick) {
+      fetchHelloInfo();
+    }
+  },[isUserClick])
 
   const onMessagePlayed = () => {
     setMessages((messages) => messages.slice(1));
@@ -53,8 +64,9 @@ export const ChatProvider = ({ children }) => {
   return (
     <ChatContext.Provider
       value={{
-        openingAvatar,
-        openMessages,
+        isUserClick,
+        setIsUserClick,
+        setMessage,
         chat,
         message,
         onMessagePlayed,

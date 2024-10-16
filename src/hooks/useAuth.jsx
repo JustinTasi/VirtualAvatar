@@ -8,7 +8,7 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const { setIsShow, setModalProps } = useMessageModal();
   const [userName, setUserName] = useState({
-    'userName': '李泓泯'
+    'userName': '林Jerry'
   });
   const value = userName;
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
     // };
 
     // fetchLoginUser();
-    // navigate("/male1")
+    navigate("/male1")
   }, []);
 
   return (

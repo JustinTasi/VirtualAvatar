@@ -46,7 +46,7 @@ export const ChatProvider = ({ children }) => {
     if (isUserClick) {
       fetchHelloInfo();
     }
-  },[isUserClick])
+  },[isUserClick, location])
 
   const onMessagePlayed = () => {
     setMessages((messages) => messages.slice(1));

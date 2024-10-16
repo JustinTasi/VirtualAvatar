@@ -27,7 +27,7 @@ const Dots = (props) => {
     <group {...props}>
       <Text fontSize={0.14} anchorX={"left"} anchorY={"bottom"}>
         {loadingText}
-        <meshBasicMaterial attach="material" color="black" />
+        <meshBasicMaterial attach="material" style={{color:'black'}} />
       </Text>
     </group>
   );

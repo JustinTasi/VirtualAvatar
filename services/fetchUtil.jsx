@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:8000/';
+const BASE_URL = 'http://140.131.115.152:8000/';
 const GET = "GET";
 const POST = "POST";
 const DELETE = "DELETE";

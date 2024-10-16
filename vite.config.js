@@ -8,6 +8,7 @@ export default defineConfig({
     target: 'esnext'
   },
   server: {
-    port: 3000, // 這裡指定你想要的port號
+    host: '0.0.0.0',
+    port: 3000,
   },
 });

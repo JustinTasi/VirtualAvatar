@@ -108,6 +108,11 @@
 .iconSize {
   width: 1.5rem;
   height: 1.5rem;
+  color: #e68e37;
+}
+
+.iconSize:hover{
+  color: #b05c08;
 }
 
 

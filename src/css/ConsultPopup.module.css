@@ -15,7 +15,7 @@
   position: relative;
   height: auto;
   width: 50vw;
-  min-width: 300px;
+  min-width: 230px;
   color: rgb(80, 83, 83);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
@@ -23,6 +23,11 @@
 .closeIcon {
   display: flex;
   text-align: end;
+}
+
+.iconSize {
+  width: 1rem;
+  height: 1rem;
 }
 
 .rowBox {
@@ -49,7 +54,7 @@
   background-color: #e9e3e3;
   font-size: 12px;
   padding: 5px;
-  height: 15vw;
+  height: 15vh;
   min-height: 100px;
   margin: 10px 0;
   resize: none;
@@ -98,4 +103,160 @@
 
 .popupBtnSubmit:focus:not(:active) {
   box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+
+@media screen and (min-width: 300px) and (max-width: 400px){ 
+  .popupTitle {
+    font-size: 16px;
+  }
+  .popupContent {
+    font-size: 14px;
+  }
+  .popupContainer {
+    width: 20vw;
+  }
+}
+
+@media screen and (min-width: 401px) and (max-width: 599px){ 
+  .popupTitle {
+    font-size: 20px;
+  }
+  
+  .popupContent {
+    font-size: 15px;
+  }
+  .iconSize {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 799px){ 
+  .popupTitle {
+    font-size: 22px;
+  }
+  
+  .popupContent {
+    font-size: 18px;
+  }
+  .iconSize {
+    width: 30px;
+    height: 30px;
+  }
+  .popupBtnSubmit {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px){ 
+  .popupTitle {
+    font-size: 22px;
+  }
+  .popupContent {
+    font-size: 18px;
+  }
+  .iconSize {
+    width: 30px;
+    height: 30px;
+  }
+  .popupBtnSubmit {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1199px){ 
+  .popupTitle {
+    font-size: 24px;
+  }
+  
+  .popupContent {
+    font-size: 20px;
+  }
+  .iconSize {
+    width: 50px;
+    height: 50px;
+  }
+  .popupBtnSubmit {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1499px){ 
+  .popupTitle {
+    font-size: 24px;
+  }
+  
+  .popupContent {
+    font-size: 20px;
+  }
+  .iconSize {
+    width: 35px;
+    height: 35px;
+  }
+  .popupContainer {
+    width: 35vw;
+  }
+  .popupBtnSubmit {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1850px){ 
+  .popupTitle {
+    font-size: 24px;
+  }
+  
+  .popupContent {
+    font-size: 20px;
+  }
+  .iconSize {
+    width: 35px;
+    height: 35px;
+  }
+  .popupContainer {
+    width: 30vw;
+  }
+  .popupBtnSubmit {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 1850px) and (max-width: 2499px){ 
+  .popupTitle {
+    font-size: 28px;
+  }
+  
+  .popupContent {
+    font-size: 24px;
+  }
+  .iconSize {
+    width: 35px;
+    height: 35px;
+  }
+  .popupContainer {
+    width: 30vw;
+  }
+  .popupBtnSubmit {
+    font-size: 28px;
+  }
+}
+
+@media screen and (min-width: 2500px) and (max-width: 2800px){ 
+  .popupTitle {
+    font-size: 28px;
+  }
+  
+  .popupContent {
+    font-size: 24px;
+  }
+  .iconSize {
+    width: 35px;
+    height: 35px;
+  }
+  .popupContainer {
+    width: 30vw;
+  }
+  .popupBtnSubmit {
+    font-size: 28px;
+  }
 }

@@ -9,19 +9,20 @@ import { useMessageModal } from "../hooks/useMessageModal";
 import SpeechToText from "../components/SpeechToText.jsx";
 import { OpenPage } from "./OpenPage.jsx";
 
-export const UI = ({ setAvatarChange, hidden, ...props }) => {
-  const { chat, loading, cameraZoomed, setCameraZoomed, message } = useChat();
+export const UI = ({ setAvatarChange, hidden }) => {
+  const { isUserClick, chat, loading, cameraZoomed, setCameraZoomed, message } = useChat();
   const [isConsultPopupOpen, setIsConsultPopupOpen] = useState(false);
+  const [receiveMessage, setReceiveMessage] = useState('')
   const { setIsShow, setModalProps } = useMessageModal();
   const [inputValue, setInputValue] = useState("");
-  const [userClick, setUserCilck] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
   
   const sendMessage = () => {
-    const text = { transcript: inputValue };
+    const transcript = inputValue;
     if (!loading && !message) {
-      chat(text);
+      chat(transcript);
+      console.log(transcript)
       setInputValue("");
     }
   };
@@ -40,18 +41,22 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
   useEffect(() => {
     if (!message) {
       setFadeOut(true);
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setIsVisible(false);
-      }, 1000);
+        setFadeOut(false);
+        setReceiveMessage('');
+      }, 2000);
+  
+      return () => clearTimeout(timeoutId);
     } else {
-      setFadeOut(false);
       setIsVisible(true);
+      setReceiveMessage(message.text)
     }
   }, [message]);
 
   return (
     <>
-      {userClick ? (
+      {isUserClick ? (
         <div className={styles.container}>
           {/* 上方元件 */}
           <div className={styles.box}>
@@ -125,7 +130,7 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
               >
                 <textarea
                   className={styles.messageContent}
-                  value={message}
+                  value={receiveMessage}
                   placeholder="等待接收回答..."
                   readOnly
                 />
@@ -134,6 +139,8 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
             <div className={styles.rowBox}>
               <input
                 className={styles.inputField}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 placeholder="請輸入內容..."
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
@@ -158,7 +165,7 @@ export const UI = ({ setAvatarChange, hidden, ...props }) => {
           </div>
         </div>
       ) : (
-        <OpenPage setUserClick={setUserCilck} />
+        <OpenPage/>
       )}
       {isConsultPopupOpen && <ConsultPopup setIsOpen={setIsConsultPopupOpen} />}
     </>

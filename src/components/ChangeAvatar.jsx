@@ -58,7 +58,7 @@ export default function ChangeAvatar({ handleAvatarChange }) {
       }
     }
 
-    fetchData();
+    // fetchData();
   },[])
 
   useEffect(() => {

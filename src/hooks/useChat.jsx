@@ -1,18 +1,23 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import openAIAPI from '../../services/BackEndAPI'
+import { useAuth } from "./useAuth";
+import { useLocation } from "react-router-dom";
 
 const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState();
+  const [openMessages, setOpenMessages] = useState();
   const [loading, setLoading] = useState(false);
   const [cameraZoomed, setCameraZoomed] = useState(true);
+  const { userName } = useAuth();
+  const location = useLocation().pathname;
+
   const chat = async (message) => {
     setLoading(true);
     try {
-      const response = await openAIAPI.chatWithOpenAi(message);
-      
+      const response = await openAIAPI.chatWithOpenAi(message)
       setMessages(() => [response]);
       setLoading(false);
     } catch (e) {
@@ -20,6 +25,17 @@ export const ChatProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  const openingAvatar = async () => {
+    try {
+      const response = await openAIAPI.getHelloUserInfo({'userName':userName, 'charactor':location})
+      setOpenMessages(response);
+      // console.log(openMessages)
+    } catch (e) {
+      console.error(e.message)
+    }
+  };
+  
 
   const onMessagePlayed = () => {
     setMessages((messages) => messages.slice(1));
@@ -37,6 +53,8 @@ export const ChatProvider = ({ children }) => {
   return (
     <ChatContext.Provider
       value={{
+        openingAvatar,
+        openMessages,
         chat,
         message,
         onMessagePlayed,

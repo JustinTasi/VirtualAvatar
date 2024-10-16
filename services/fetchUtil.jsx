@@ -53,4 +53,33 @@ export default class FetchUtil {
     });
     return object;
   }
+  static objectToRequestParams(object) {
+    var paramsStringArray = [];
+    for (var key in object) {
+      if (object.hasOwnProperty(key)) {
+        paramsStringArray.push(
+          encodeURIComponent(key) + "=" + encodeURIComponent(object[key])
+        );
+      }
+    }
+    return paramsStringArray.join("&");
+  }
+
+  static arrayObjectToRequestParams(object) {
+    var paramsStringArray = [];
+    for (var index in object) {
+      if (object.hasOwnProperty(index)) {
+        for (var key in object[index]) {
+          if (object[index].hasOwnProperty(key)) {
+            paramsStringArray.push(
+              encodeURIComponent(key) +
+                "=" +
+                encodeURIComponent(object[index][key])
+            );
+          }
+        }
+      }
+    }
+    return paramsStringArray.join("&");
+  }
 }

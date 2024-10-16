@@ -7,16 +7,17 @@ const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const { setIsShow, setModalProps } = useMessageModal();
-  const [authority, setAuthority] = useState({
-    'userName': '菜歐歐'
+  const [userName, setUserName] = useState({
+    'userName': '李泓泯'
   });
-  const value = { authority };
+  const value = userName;
   const navigate = useNavigate();
 
   useEffect(() => {
     // const fetchLoginUser = async () => {
     //   const lineId = localStorage.getItem('lineId')
     //   const token = localStorage.getItem('token')
+    //   const userName = localStorage.getItem('userName')
       
     //   let response;
       
@@ -31,8 +32,8 @@ export function AuthProvider({ children }) {
     //   } else if (!token){
     //     response = await BackEndAPI.changeBackEndToken(lineId)
 
-    //     localStorage.setItem('lineId', response.lineId);
-    //     setAuthority(response.userId)
+    //     localStorage.setItem('token', response.token);
+    //     setUserName(response.userName)
     //   } else {
     //     navigate("/accessDeny");
     //   }

@@ -8,11 +8,11 @@ const BackEndAPI = {
   'getLineId': () =>
     API.postAPI(`${BASE_URL}/getLineToken`),
   
-  'chatWithOpenAi': (message) =>
-    API.postAPI(`${BASE_URL}/chatWithOpenAi`, message),
+  'chatWithOpenAi': (data) =>
+    API.postAPI(`${BASE_URL}/chatWithOpenAi`, data),
 
-  'sendUncomfortableMessage': (message) =>
-    API.postAPI(`${BASE_URL}/sendMessage`, message),
+  'sendUncomfortableMessage': (data) =>
+    API.postAPI(`${BASE_URL}/sendUncomfortableMessage`, data),
 
   'getIsFirstTimeUseRecord': () =>
     API.getAPI(`${BASE_URL}/record`),

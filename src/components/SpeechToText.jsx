@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 
-export default function Microphone({style, handleInputChange}) {
+export default function Microphone({style, iconStyle,handleInputChange}) {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   const recognition = SpeechRecognition ? new SpeechRecognition() : null;

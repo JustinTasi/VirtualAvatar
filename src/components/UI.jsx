@@ -137,7 +137,7 @@ export const UI = ({ setAvatarChange, hidden }) => {
               </div>
             )}
             <div className={styles.rowBox}>
-              <input
+              <textarea
                 className={styles.inputField}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
@@ -150,6 +150,7 @@ export const UI = ({ setAvatarChange, hidden }) => {
               />
               <SpeechToText
                 style={styles.microphone}
+                iconStyle={styles.iconSize}
                 handleInputChange={setInputValue}
               />
             </div>

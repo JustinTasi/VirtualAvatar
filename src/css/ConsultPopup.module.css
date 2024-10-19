@@ -40,21 +40,21 @@
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
-  padding: 20px 20px;
+  padding: 10px 15px;
   border-radius: 0.5rem;
 }
 
 .popupTitle {
   font-size: 16px;
   font-weight: 900;
-  padding: 5px 0;
+  padding: 2px 0;
 }
 
 .popupContent {
   background-color: #e9e3e3;
   font-size: 12px;
   padding: 5px;
-  height: 15vh;
+  height: 100px;
   min-height: 100px;
   margin: 10px 0;
   resize: none;
@@ -121,6 +121,10 @@
   }
   .popupContainer {
     width: 20vw;
+  }
+  .iconSize {
+    width: 20px;
+    height: 20px;
   }
 }
 

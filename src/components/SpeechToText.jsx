@@ -1,29 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
+import styles from "../css/SpeechToText.module.css"
 
-export default function Microphone({style, iconStyle,handleInputChange}) {
+export default function Microphone({ handleInputChange }) {
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
   const recognition = SpeechRecognition ? new SpeechRecognition() : null;
   const [isListening, setIsListening] = useState(false);
 
   useEffect(() => {
     if (recognition) {
-      // 設定語音識別的語言 (可以根據需求更改)
       recognition.lang = 'zh-TW';
+      recognition.continuous = true; // 啟用持續模式
+      recognition.interimResults = true; // 啟用中間結果
 
-      // 當語音識別結果返回時
       recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        handleInputChange(transcript); // 將語音轉成的文字存儲到 state 中
+        let interimTranscript = ''; // 暫存中間結果
+        let finalTranscript = '';   // 最終結果
+
+        for (let i = 0; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          if (event.results[i].isFinal) {
+            finalTranscript += transcript;  // 累積最終結果
+          } else {
+            interimTranscript += transcript; // 累積中間結果
+          }
+        }
+        handleInputChange(interimTranscript + finalTranscript); // 實時更新輸入
       };
 
-      // 當語音識別結束時，停止聆聽
       recognition.onend = () => {
         setIsListening(false);
       };
-    }else{
+
       recognition.onerror = (event) => {
         console.error("Speech recognition error detected: " + event.error);
         setIsListening(false);
@@ -31,14 +40,14 @@ export default function Microphone({style, iconStyle,handleInputChange}) {
     }
   }, [recognition]);
 
-  // 啟動或停止語音識別
+  // 控制錄音啟動和停止
   const handleListen = () => {
     if (recognition) {
       if (isListening) {
-        recognition.stop();
+        recognition.stop(); // 停止錄音
         setIsListening(false);
       } else {
-        recognition.start();
+        recognition.start(); // 開始錄音
         setIsListening(true);
       }
     } else {
@@ -48,7 +57,12 @@ export default function Microphone({style, iconStyle,handleInputChange}) {
 
   return (
     <>
-      <a className={style} onClick={handleListen}><FontAwesomeIcon icon={faMicrophone} /></a>
+      <div className={styles.microphoneDiv}>
+        {!isListening ? 
+          <a className={styles.microphone} onClick={handleListen}><FontAwesomeIcon icon={faMicrophone} /></a> :
+          <a className={styles.microphoneLisening} onClick={handleListen}><FontAwesomeIcon icon={faMicrophone} /></a>
+        }
+      </div>
     </>
   );
 };

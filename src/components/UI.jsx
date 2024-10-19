@@ -128,6 +128,7 @@ export const UI = ({ setAvatarChange, hidden }) => {
                   fadeOut ? styles.fadeOut : ""
                 }`}
               >
+                <img src="image/sound.gif" className={styles.voiceGif} />
                 <textarea
                   className={styles.messageContent}
                   value={receiveMessage}
@@ -135,7 +136,7 @@ export const UI = ({ setAvatarChange, hidden }) => {
                   readOnly
                 />
               </div>
-            )}
+            )} 
             <div className={styles.rowBox}>
               <textarea
                 className={styles.inputField}
@@ -149,8 +150,6 @@ export const UI = ({ setAvatarChange, hidden }) => {
                 }}
               />
               <SpeechToText
-                style={styles.microphone}
-                iconStyle={styles.iconSize}
                 handleInputChange={setInputValue}
               />
             </div>

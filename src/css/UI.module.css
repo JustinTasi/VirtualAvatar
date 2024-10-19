@@ -18,15 +18,15 @@
   width: 90vw;
 }
 
+
 .messageArrivedSection {
+  color: #393c41;
   position: absolute;
-  background-color: #fff;
-  padding: 3% 4%;
+  padding: 10px 3px;
   width: 20vw;
-  max-width: 500px;
-  height: 30vh;
-  bottom: 15vh;
-  left: -2vw;
+  max-width: 500px; 
+  height: auto;
+  bottom: 110%;
   border-radius: 1rem;
   font-size: 20px;
   opacity: 1;
@@ -38,13 +38,46 @@
   transition: opacity 1s ease;
 }
 
+
+.voiceGif {
+  position: relative;
+  top: 0.5px;
+  background-color: white;
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 2px 5px;
+  height: 20px;
+  width: 40px;
+}
+
 .messageContent {
-  background-color: #d9d9d9;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
   resize: none;
-  padding: 5px 15px;
-  height: 100%;
+  padding: 10px 15px;
+  height: 20vh;
   width: 100%;
   border-radius: 0.5rem;
+  overflow-y: auto;
+}
+
+.messageContent:focus{
+  outline: none;
+}
+
+.messageContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messageContent::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.5);
+  border-radius: 10px;
+}
+
+.messageContent::-webkit-scrollbar-track {
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .columnBox {
@@ -121,30 +154,6 @@
   backdrop-filter: blur(10px);
 }
 
-.microphone {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  cursor: pointer;
-  text-align: center;
-  padding: 5px 8px;
-  border-radius: 2rem;
-}
-
-.microphone:hover{
-  background-color: rgba(255, 1, 1, 0.541);
-  color: white;
-}
-
-@media (hover: none) {
-  .microphone:active,
-  .microphone:focus {
-    background-color: rgba(202, 23, 23, 0.541);
-    color: white;
-  }
-}
-
-
 .inputField {
   width: 100%;
   min-height: 45px;
@@ -200,7 +209,7 @@
   }
   .bottomSection {
     max-width: 250px;
-    margin-left: 22.5vw;
+    margin-left: 20vw;
   }
   .messageArrivedSection{
     font-size: 15px;

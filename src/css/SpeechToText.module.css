@@ -1,0 +1,50 @@
+.microphoneDiv{
+  position: relative;
+}
+
+.listening {
+  position: absolute;
+  bottom: 5%;
+  font-size: 16px;
+  color: red;
+  font-weight: bold;
+  animation: pulse 1s infinite;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.microphone,
+.microphoneLisening {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  cursor: pointer;
+  text-align: center;
+  padding: 5px 8px;
+  border-radius: 2rem;
+}
+
+.microphoneLisening {
+  background-color: rgba(255, 1, 1, 0.541);
+  color: white;
+}
+
+@media (hover: none) {
+  .microphone:active,
+  .microphone:focus {
+    background-color: rgba(202, 23, 23, 0.541);
+    color: white;
+  }
+}

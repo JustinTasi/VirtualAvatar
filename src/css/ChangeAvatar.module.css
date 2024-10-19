@@ -16,6 +16,12 @@
 .word:hover{
   background-color: #b05c08;
 }
+@media (hover: none) {
+  .word:active,
+  .word:focus {
+    background-color: #b05c08;
+  }
+}
 
 .modalWrap {
   right: 0;
@@ -77,6 +83,14 @@
   transition: transform 0.3s ease-in-out;
 }
 
+@media (hover: none) {
+  .bannerBox:active,
+  .bannerBox:focus {
+    transform: scale(1.01);
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
 .rowBox {
   display: flex;
   align-items: center;
@@ -113,6 +127,13 @@
 
 .iconSize:hover{
   color: #b05c08;
+}
+
+@media (hover: none) {
+  .iconSize:active,
+  .iconSize:focus {
+    color: #b05c08;
+  }
 }
 
 

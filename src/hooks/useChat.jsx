@@ -17,10 +17,11 @@ export const ChatProvider = ({ children }) => {
   const chat = async (message) => {
     setLoading(true);
     try {
-      const response = await openAIAPI.chatWithOpenAi({
+      // const response = await openAIAPI.chatWithOpenAi({
+      const response = await openAIAPI.getHelloUserInfo({
         'userName':userName,
         'charactor':location,
-        'transcript': message,
+        // 'transcript': message,
       })
       console.log(message);
       setMessages(() => [response]);
@@ -42,10 +43,11 @@ export const ChatProvider = ({ children }) => {
         console.error(e.message)
       }
       setLoading(false);
-    }
+    };
+
     if (isUserClick) {
       fetchHelloInfo();
-    }
+    };
   },[isUserClick, location])
 
   const onMessagePlayed = () => {

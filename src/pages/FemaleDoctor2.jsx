@@ -10,7 +10,7 @@ export default function FemaleDoctor2() {
       <Loader />
       <Leva hidden />
       <UI/>
-      <Canvas shadows camera={{ position: [0, 0, 1], fov: 30 }}>
+      <Canvas shadows camera={{ position: [0, 1, 1], fov: 50}}>
         <FemaleDoctor2Experience/>
       </Canvas>
     </>

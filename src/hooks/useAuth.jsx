@@ -8,7 +8,7 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const { setIsShow, setModalProps } = useMessageModal();
   const [userName, setUserName] = useState({
-    'userName': '林Jerry'
+    'userName': '小李'
   });
   const value = userName;
   const navigate = useNavigate();

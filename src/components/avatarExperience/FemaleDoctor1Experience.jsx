@@ -27,7 +27,7 @@ const Dots = (props) => {
     <group {...props}>
       <Text fontSize={0.14} anchorX={"left"} anchorY={"bottom"}>
         {loadingText}
-        <meshBasicMaterial attach="material" style={{color:'black'}} />
+        <meshBasicMaterial attach="material" color="white" />
       </Text>
     </group>
   );
@@ -53,7 +53,7 @@ export const FemaleDoctor1Experience = () => {
       <CameraControls ref={cameraControls} />
       <Environment preset="sunset" />
       <Suspense>
-        <Dots position-y={1.75} position-x={-0.02} />
+        <Dots position-y={1.55} position-x={-0.06} position-z={0.5}/>
       </Suspense>
       <FemaleDoctor1Avatar/>
       <ContactShadows opacity={0.7} />

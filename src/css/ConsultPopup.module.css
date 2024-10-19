@@ -101,6 +101,13 @@
   background-position: -20px -20px;
 }
 
+@media (hover: none) {
+  .popupBtnSubmit:active,
+  .popupBtnSubmit:focus {
+    background-position: -20px -20px;
+  }
+}
+
 .popupBtnSubmit:focus:not(:active) {
   box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
 }

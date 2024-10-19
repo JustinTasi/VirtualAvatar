@@ -17,7 +17,7 @@ export const UI = ({ setAvatarChange, hidden }) => {
   const [inputValue, setInputValue] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
-  
+
   const sendMessage = () => {
     const transcript = inputValue;
     if (!loading && !message) {

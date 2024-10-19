@@ -87,6 +87,13 @@
   background-color: #b05c08;
 }
 
+@media (hover: none) {
+  .selectedButton:active,
+  .selectedButton:focus {
+    background-color: #b05c08;
+  }
+}
+
 .iconSize {
   width: 1.5rem;
   height: 1.5rem;
@@ -121,17 +128,29 @@
   cursor: pointer;
   text-align: center;
   padding: 5px 8px;
-  margin: 0 20px;
   border-radius: 2rem;
 }
 
 .microphone:hover{
-  background-color: rgba(56, 50, 42, 0.541);
+  background-color: rgba(255, 1, 1, 0.541);
+  color: white;
 }
+
+@media (hover: none) {
+  .microphone:active,
+  .microphone:focus {
+    background-color: rgba(202, 23, 23, 0.541);
+    color: white;
+  }
+}
+
 
 .inputField {
   width: 100%;
+  min-height: 45px;
   padding: 0.2rem;
+  margin: 0 3px;
+  resize: none;
   padding-left: 0.4rem;
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 0.5rem;
@@ -160,6 +179,13 @@
   background-color: #b05c08;
 }
 
+@media (hover: none) {
+  .sendButton:active,
+  .sendButton:focus {
+    background-color: #b05c08;
+  }
+}
+
 .sendButton.disabled {
   cursor: not-allowed;
   opacity: 0.3;
@@ -181,13 +207,14 @@
     width: 60vw;
   }
   .selectedButton {
+    max-width: 45px;
+    max-height: 45px;
     padding: 0.75rem;
     margin-right: 10px;
   }
   .inputField,
   .sendButton {
     font-size: 13.5px;
-    max-height: 3rem;
   }
 }
 
@@ -208,6 +235,8 @@
     max-width: 550px;
   }
   .selectedButton {
+    max-width: 45px;
+    max-height: 45px;
     padding: 0.75rem;
   }
   .inputField,
@@ -238,6 +267,8 @@
     max-width: 550px;
   }
   .selectedButton {
+    max-width: 82.5px;
+    max-height: 82.5px;
     padding: 1.75rem;
   }
   .sendButton {
@@ -260,6 +291,8 @@
     height: 50px;
   }
   .selectedButton {
+    max-width: 101px;
+    max-height: 101px;
     padding: 1.7rem;
   }
   .messageArrivedSection{
@@ -296,6 +329,8 @@
     max-width: 550px;
   }
   .selectedButton {
+    max-width: 102.5px;
+    max-height: 102.5px;
     padding: 1.75rem;
   }
   .bottomSection {
@@ -326,6 +361,8 @@
     height: 50px;
   }
   .selectedButton {
+    max-width: 110px;
+    max-height: 110px;
     padding: 2rem;
   }
   .bottomSection {
@@ -346,11 +383,13 @@
     font-size: 20px;
   }
   .selectedButton {
+    max-width: 110px;
+    max-height: 110px;
     padding: 2rem;
   }
   .iconSize {
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 50px;
   }
   .messageArrivedSection{
     font-size: 22px;
@@ -382,6 +421,8 @@
     max-width: 550px;
   }
   .selectedButton {
+    max-width: 110px;
+    max-height: 110px;
     padding: 2rem;
   }
   .iconSize {

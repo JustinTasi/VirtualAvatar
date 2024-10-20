@@ -5,11 +5,14 @@ import FemaleDoctor2 from './pages/FemaleDoctor2';
 import MaleDoctor1 from './pages/MaleDoctor1';
 import MaleDoctor2 from './pages/MaleDoctor2';
 import LineAuth from './pages/ReceiveToken';
+import IndexRouter from './pages/IndexRouter';
+
 
 export default function App() {
   return (
     <>
       <Routes>
+        <Route path="/" element={<IndexRouter/>} />
         <Route path="/accessDeny" element={<AccessDeny/>} />
         <Route path="/female1" element={<FemaleDoctor1/>} />
         <Route path="/female2" element={<FemaleDoctor2/>} />

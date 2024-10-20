@@ -19,7 +19,7 @@ export default function ReceiveToken() {
     } else {
       setModalProps({
         type: 'ERROR',
-        message: '無效的 Line Token',
+        message: '請從手機LineBote官方帳號中登入使用！',
         isNavigate: true,
       });
       setIsShow(true);
@@ -43,7 +43,7 @@ export default function ReceiveToken() {
     } catch (error) {
       setModalProps({
         type: "ERROR",
-        message: "您不是本系統之用戶！",
+        message: "驗證失敗！您不是本系統之用戶！請洽系統管理員",
         isNavigate: true,
       });
       setIsShow(true);

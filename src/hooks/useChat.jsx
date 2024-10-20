@@ -1,29 +1,56 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import openAIAPI from '../../services/OpenAIAPI'
+import openAIAPI from '../../services/BackEndAPI'
+import { useLocation } from "react-router-dom";
 
 const ChatContext = createContext();
 
 export const ChatProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState();
+  const [isUserClick, setIsUserClick] = useState(false);
   const [loading, setLoading] = useState(false);
   const [cameraZoomed, setCameraZoomed] = useState(true);
-  const onMessagePlayed = () => {
-    setMessages((messages) => messages.slice(1));
-  };
+  const userName = localStorage.getItem('userName');
+  const location = useLocation().pathname;
 
   const chat = async (message) => {
     setLoading(true);
-    // @TODO 把註解弄回來
-    // const data = await openAIAPI.sendMessageToOpenAi(message);
-    // const resp = (await data.json()).response;
-    const data = {
-      "response": "嗨，你好！有什麼可以幫助你的嗎？",
-      "role": "assistant"
+    try {
+      const response = await openAIAPI.chatWithOpenAi({
+        'userName':userName,
+        'charactor':location,
+        'transcript': message,
+      })
+
+      setMessages(() => [response]);
+      setLoading(false);
+    } catch (e) {
+      console.error(e.message)
+      setLoading(false);
     }
-    const resp = data.response;
-    setMessages((messages) => [...messages, ...resp]);
-    setLoading(false);
+  };
+
+  useEffect(() => {
+    const fetchHelloInfo = async () => {
+      setLoading(true);
+      try {
+        console.log('useChat' + userName);
+        const response = await openAIAPI.getHelloUserInfo({'userName': userName, 'charactor': location})
+        
+        setMessage(response);
+      } catch (e) {
+        console.error(e.message)
+      }
+      setLoading(false);
+    };
+
+    if (isUserClick) {
+      fetchHelloInfo();
+    };
+  },[isUserClick, location])
+
+  const onMessagePlayed = () => {
+    setMessages((messages) => messages.slice(1));
   };
 
   useEffect(() => {
@@ -34,9 +61,13 @@ export const ChatProvider = ({ children }) => {
     }
   }, [messages]);
 
+
   return (
     <ChatContext.Provider
       value={{
+        isUserClick,
+        setIsUserClick,
+        setMessage,
         chat,
         message,
         onMessagePlayed,

@@ -1,0 +1,479 @@
+.container {
+  position: fixed;
+  top: 2vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  flex-direction: column;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90vw;
+}
+
+
+.messageArrivedSection {
+  color: #393c41;
+  position: absolute;
+  padding: 10px 3px;
+  width: 20vw;
+  max-width: 500px; 
+  height: auto;
+  bottom: 110%;
+  border-radius: 1rem;
+  font-size: 20px;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+
+.voiceGif {
+  position: relative;
+  top: 0.5px;
+  background-color: white;
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 2px 5px;
+  height: 20px;
+  width: 40px;
+}
+
+.messageContent {
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  resize: none;
+  padding: 10px 15px;
+  height: 20vh;
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow-y: auto;
+}
+
+.messageContent:focus{
+  outline: none;
+}
+
+.messageContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messageContent::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.5);
+  border-radius: 10px;
+}
+
+.messageContent::-webkit-scrollbar-track {
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.columnBox {
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-left: 2vw;
+  width: auto;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: black
+}
+
+.rightButtons {
+  width: 97vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1.5vh 0;
+}
+
+.selectedButton {
+  cursor: pointer;
+  pointer-events: auto;
+  background-color: #e68e37;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-right: 0.15%;
+}
+
+.selectedButton:hover{
+  background-color: #b05c08;
+}
+
+@media (hover: none) {
+  .selectedButton:active,
+  .selectedButton:focus {
+    background-color: #b05c08;
+  }
+}
+
+.iconSize {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.bottomSection {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+  max-width: 500px;
+  width: 100vw;
+  margin-left: 25vw;
+}
+
+.rowBox{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding: 0.4rem;
+  border-radius: 0.375rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.inputField {
+  width: 100%;
+  min-height: 45px;
+  padding: 0.2rem;
+  margin: 0 3px;
+  resize: none;
+  padding-left: 0.4rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0.5rem;
+}
+
+.inputField::placeholder {
+  color: #393c41;
+  font-style: italic;
+}
+
+
+.sendButton {
+  cursor: pointer;
+  background-color: #e68e37;
+  text-align: center;
+  color: #fff;
+  padding: 0.3rem;
+  height: 100%;
+  width: 5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+}
+
+.sendButton:hover {
+  background-color: #b05c08;
+}
+
+@media (hover: none) {
+  .sendButton:active,
+  .sendButton:focus {
+    background-color: #b05c08;
+  }
+}
+
+.sendButton.disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+@media screen and (min-width: 300px) and (max-width: 400px){ 
+  .title {
+    font-size: 18px;
+  }
+  .secondTitle {
+    font-size: 15px;
+  }
+  .bottomSection {
+    max-width: 250px;
+    margin-left: 20vw;
+  }
+  .messageArrivedSection{
+    font-size: 15px;
+    width: 60vw;
+  }
+  .selectedButton {
+    max-width: 45px;
+    max-height: 45px;
+    padding: 0.75rem;
+    margin-right: 10px;
+  }
+  .inputField,
+  .sendButton {
+    font-size: 13.5px;
+  }
+}
+
+@media screen and (min-width: 401px) and (max-width: 599px){ 
+  .title {
+    font-size: 20px;
+  }
+  .secondTitle {
+    font-size: 15px;
+  }
+  .bottomSection {
+    max-width: 280px;
+    margin-left: 22vw;
+  }
+  .messageArrivedSection{
+    font-size: 15px;
+    width: 60vw;
+    max-width: 550px;
+  }
+  .selectedButton {
+    max-width: 45px;
+    max-height: 45px;
+    padding: 0.75rem;
+  }
+  .inputField,
+  .sendButton {
+    font-size: 13.5px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 799px){ 
+  .title {
+    font-size: 25px;
+  }
+  .secondTitle {
+    font-size: 20px;
+  }
+  .bottomSection {
+    max-width: 460px;
+    margin-left: 22.5vw;
+  }
+  .iconSize {
+    width: 30px;
+    height: 30px;
+  }
+  .messageArrivedSection{
+    font-size: 18px;
+    width: 45vw;
+    left: 6vw;
+    max-width: 550px;
+  }
+  .selectedButton {
+    max-width: 82.5px;
+    max-height: 82.5px;
+    padding: 1.75rem;
+  }
+  .sendButton {
+    width: 8rem;
+  }
+  .box {
+    width: 95vw;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px){ 
+  .title {
+    font-size: 30px;
+  }
+  .secondTitle {
+    font-size: 25px;
+  }
+  .iconSize {
+    width: 50px;
+    height: 50px;
+  }
+  .selectedButton {
+    max-width: 101px;
+    max-height: 101px;
+    padding: 1.7rem;
+  }
+  .messageArrivedSection{
+    font-size: 18px;
+    width: 45vw;
+    left: 6vw;
+    max-width: 550px;
+  }
+  .bottomSection {
+    max-width: 500px;
+    margin-left: 26vw;
+    font-size: 30px;
+  }
+  .sendButton {
+    width: 8rem;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1199px){ 
+  .title {
+    font-size: 30px;
+  }
+  .secondTitle {
+    font-size: 25px;
+  }
+  .iconSize {
+    width: 50px;
+    height: 50px;
+  }
+  .messageArrivedSection{
+    font-size: 18px;
+    width: 40vw;
+    left: 5vw;
+    max-width: 550px;
+  }
+  .selectedButton {
+    max-width: 102.5px;
+    max-height: 102.5px;
+    padding: 1.75rem;
+  }
+  .bottomSection {
+    max-width: 550px;
+    margin-left: 28vw;
+    font-size: 25px;
+  }
+  .sendButton {
+    width: 8rem;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1499px){ 
+  .title {
+    font-size: 32px;
+  }
+  .secondTitle {
+    font-size: 28px;
+  }
+  .messageArrivedSection{
+    font-size: 22px;
+    width: 40vw;
+    left: 5vw;
+    max-width: 550px;
+  }
+  .iconSize {
+    width: 50px;
+    height: 50px;
+  }
+  .selectedButton {
+    max-width: 110px;
+    max-height: 110px;
+    padding: 2rem;
+  }
+  .bottomSection {
+    max-width: 650px;
+    margin-left: 30vw;
+    font-size: 30px;
+  }
+  .sendButton {
+    width: 7rem;
+  }
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1850px){ 
+  .title {
+    font-size: 25px;
+  }
+  .secondTitle {
+    font-size: 20px;
+  }
+  .selectedButton {
+    max-width: 110px;
+    max-height: 110px;
+    padding: 2rem;
+  }
+  .iconSize {
+    width: 50px;
+    height: 50px;
+  }
+  .messageArrivedSection{
+    font-size: 22px;
+    width: 32.5vw;
+    left: 5vw;
+    max-width: 550px;
+  }
+  .bottomSection {
+    max-width: 40vw;
+    margin-left: 32.5vw;
+    font-size: 25px;
+  }
+  .sendButton {
+    width: 8rem;
+  }
+}
+
+@media screen and (min-width: 1850px) and (max-width: 2499px){ 
+  .title {
+    font-size: 32px;
+  }
+  .secondTitle {
+    font-size: 28px;
+  }
+  .messageArrivedSection{
+    font-size: 22px;
+    width: 32.5vw;
+    left: 3vw;
+    max-width: 550px;
+  }
+  .selectedButton {
+    max-width: 110px;
+    max-height: 110px;
+    padding: 2rem;
+  }
+  .iconSize {
+    width: 50px;
+    height: 50px;
+  }
+  .bottomSection {
+    max-width: 700px;
+    margin-left: 35vw;
+    font-size: 30px;
+  }
+  .sendButton {
+    width: 8rem;
+  }
+  .box {
+    width: 95vw;
+  }
+}
+
+@media screen and (min-width: 2500px) and (max-width: 2800px){ 
+  .title {
+    font-size: 32px;
+  }
+  .iconSize {
+    width: 50px;
+    height: 50px;
+  }
+  .secondTitle {
+    font-size: 28px;
+  }
+  .selectedButton {
+    padding: 2rem;
+  }
+  .bottomSection {
+    max-width: 700px;
+    margin-left: 38vw;
+    font-size: 25px;
+  }
+  .sendButton {
+    width: 6rem;
+  }
+  .box {
+    width: 95vw;
+  }
+}

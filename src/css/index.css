@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --leva-sizes-rootWidth: 340px;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  width: 100% ;
+  height: 100% ;
+  background-color: #c36910;
+  background-size: cover;
+  background-image: url('texture/hospital_background3_blur.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center bottom 40%;
+  backdrop-filter: 5rem;
+}

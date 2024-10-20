@@ -1,11 +1,11 @@
 # 開啟專案指令
-npm run dev
+1. npm run install --legacy-peer-deps (下載套件)
+2. npm run dev (啟動伺服器)
 
 # 創建虛擬人網址(取得.glb檔案)
 https://readyplayer.me/
 
-# 虛擬人轉react
-https://github.com/pmndrs/gltfjsx
+下載時記得多下參數 ?morphTargets=ARKit,Oculus Visemes
 
 # 載入動作(需先有.fbx檔案，載入後挑動作)
 https://www.mixamo.com/#/
@@ -16,7 +16,6 @@ Blender (steam可載免費)
 # AI生成圖片(leonardo.ai)
 https://app.leonardo.ai/image-generation
 
-# 若要套別的皮使用下列指令
-使用此 npx gltfjsx@6.5.0 {.glb檔案路徑}
-
-![image](https://user-images.githubusercontent.com/6551176/221732091-23ee52cb-4150-42fa-b998-43628d7a6b0d.png)
+# 虛擬人(.glb檔) 轉react網址版若要套別的皮使用下列指令
+指令版 => 使用此 npx gltfjsx@6.5.0 {.glb檔案路徑}  
+網頁版 => 上傳.glb即可 https://gltf.pmnd.rs/

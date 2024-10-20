@@ -4,6 +4,7 @@ import FemaleDoctor1 from './pages/FemaleDoctor1';
 import FemaleDoctor2 from './pages/FemaleDoctor2';
 import MaleDoctor1 from './pages/MaleDoctor1';
 import MaleDoctor2 from './pages/MaleDoctor2';
+import LineAuth from './pages/ReceiveToken';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/female2" element={<FemaleDoctor2/>} />
         <Route path="/male1" element={<MaleDoctor1/>} />
         <Route path="/male2" element={<MaleDoctor2/>} />
+        <Route path="/receiveToken" element={<LineAuth/>} />
       </Routes>
     </>
   );

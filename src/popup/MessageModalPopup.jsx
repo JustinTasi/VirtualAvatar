@@ -1,11 +1,14 @@
 import { useMessageModal } from '../hooks/useMessageModal';
 import styles from '../css/MessageModal.module.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function MessageModal({ isShow, modal }) {
   const { setIsShow } = useMessageModal();
+  const navigate = useNavigate();
   const {
     type,
     message,
+    isNavigate,
     handleClick
   } = modal;
 
@@ -18,11 +21,11 @@ export default function MessageModal({ isShow, modal }) {
   };
 
   const handleDefaultErrorClick = () => {
-    setIsShow(false);
+    isNavigate ? (setIsShow(false), navigate('/accessDeny')) : setIsShow(false);
   };
 
   const handleDefaultSuccessClick = () => {
-    setIsShow(false);
+    isNavigate ? (setIsShow(false), navigate('/male1')) : setIsShow(false);
   };
 
   return (

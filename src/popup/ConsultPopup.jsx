@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import openAIAPI from '../../services/BackEndAPI';
 import { useMessageModal } from '../hooks/useMessageModal';
-import { useAuth } from '../hooks/useAuth';
 import { useLocation } from "react-router-dom";
 import { useState } from 'react';
 import { useChat } from '../hooks/useChat';
@@ -13,7 +12,7 @@ export default function ConsultPopup({ setIsOpen }) {
   const { setIsShow, setModalProps } = useMessageModal();
   const [isSending, setIsSending] = useState(false);
   const { getValues, register, handleSubmit } = useForm();
-  const { userName } = useAuth();
+  const userName = localStorage.getItem('userName')
   const location = useLocation().pathname;
   const { setMessage } = useChat();
 

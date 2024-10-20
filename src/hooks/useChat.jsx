@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import openAIAPI from '../../services/BackEndAPI'
-import { useAuth } from "./useAuth";
 import { useLocation } from "react-router-dom";
 
 const ChatContext = createContext();
@@ -11,14 +10,13 @@ export const ChatProvider = ({ children }) => {
   const [isUserClick, setIsUserClick] = useState(false);
   const [loading, setLoading] = useState(false);
   const [cameraZoomed, setCameraZoomed] = useState(true);
-  const { userName } = useAuth();
+  const userName = localStorage.getItem('userName');
   const location = useLocation().pathname;
 
   const chat = async (message) => {
     setLoading(true);
     try {
       const response = await openAIAPI.chatWithOpenAi({
-      // const response = await openAIAPI.getHelloUserInfo({
         'userName':userName,
         'charactor':location,
         'transcript': message,
@@ -36,6 +34,7 @@ export const ChatProvider = ({ children }) => {
     const fetchHelloInfo = async () => {
       setLoading(true);
       try {
+        console.log('useChat' + userName);
         const response = await openAIAPI.getHelloUserInfo({'userName': userName, 'charactor': location})
         
         setMessage(response);

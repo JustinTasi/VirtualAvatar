@@ -1,4 +1,4 @@
-const BASE_URL = 'http://140.131.115.152:8000/';
+const BASE_URL = 'https://os-django.leedong.work/';
 const GET = "GET";
 const POST = "POST";
 const DELETE = "DELETE";

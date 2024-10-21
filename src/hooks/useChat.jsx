@@ -34,7 +34,6 @@ export const ChatProvider = ({ children }) => {
     const fetchHelloInfo = async () => {
       setLoading(true);
       try {
-        console.log('useChat' + userName);
         const response = await openAIAPI.getHelloUserInfo({'userName': userName, 'charactor': location})
         
         setMessage(response);

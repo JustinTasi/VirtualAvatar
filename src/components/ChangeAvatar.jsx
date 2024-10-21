@@ -40,6 +40,7 @@ export default function ChangeAvatar({ handleAvatarChange }) {
 
   const handleSelect = (index) => {
     navigate(avatarConfig[index])
+    window.location.reload();
     setAvatarDisplay(false)
   }
 
@@ -50,7 +51,7 @@ export default function ChangeAvatar({ handleAvatarChange }) {
         <div className={styles.modalWrap}>
           <a className={styles.closeIcon} onClick={() => setAvatarDisplay(false)}><FontAwesomeIcon icon={faCircleXmark} className={styles.iconSize}/></a>
           <Swiper
-            spaceBetween={100} 
+            spaceBetween={140} 
             slidesPerView={3}  
             loop={false}        
             centeredSlides={true} 

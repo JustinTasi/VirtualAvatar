@@ -1,20 +1,19 @@
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMessageModal } from '../hooks/useMessageModal';
 import BackEndAPI from '../../services/BackEndAPI';  // 假設你有這個後端 API
 
 export default function ReceiveToken() {
   const navigate = useNavigate();
-  const location = useLocation();
   const { setIsShow, setModalProps } = useMessageModal();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const lineToken = params.get('token'); 
 
-    if (lineToken) {
+    if (lineToken !== null || lineToken !== '') {
       localStorage.setItem('token', lineToken);
-  
+      console.log('')
       getUserInfo(lineToken);
     } else {
       setModalProps({
@@ -24,7 +23,7 @@ export default function ReceiveToken() {
       });
       setIsShow(true);
     }
-  }, [location]);
+  }, []);
 
   const getUserInfo = async (lineToken) => {
     try {

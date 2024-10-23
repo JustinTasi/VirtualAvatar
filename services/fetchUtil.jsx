@@ -1,4 +1,4 @@
-const BASE_URL = 'https://os-django.leedong.work/';
+const BASE_URL = 'https://medimate.tw/';
 const GET = "GET";
 const POST = "POST";
 const DELETE = "DELETE";

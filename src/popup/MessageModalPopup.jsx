@@ -21,11 +21,11 @@ export default function MessageModal({ isShow, modal }) {
   };
 
   const handleDefaultErrorClick = () => {
-    isNavigate ? (setIsShow(false), navigate('/accessDeny')) : setIsShow(false);
+    isNavigate ? (navigate('/accessDeny'), setIsShow(false)) : setIsShow(false);
   };
 
   const handleDefaultSuccessClick = () => {
-    isNavigate ? (setIsShow(false), navigate('/male1')) : setIsShow(false);
+    isNavigate ? (navigate('/male1'), setIsShow(false)) : setIsShow(false);
   };
 
   return (
